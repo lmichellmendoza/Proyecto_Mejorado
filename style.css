@@ -1,0 +1,374 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+/* Establece reglas generales para todos los elementos */
+*{
+    box-sizing: border-box;
+}
+
+/* Estilos para el body */
+body {
+    display: flex; /* Establece el cuerpo como un contenedor flexible */
+    background-color: #f6f5f7; /* Color de fondo */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-direction: column; /* Dirección de los elementos hijos */
+    font-family: "Poppins", sans-serif; /* Fuente */
+    overflow: hidden; /* Oculta el desbordamiento */
+    height: 100vh; /* Altura del cuerpo igual a la ventana */
+}
+
+/* Estilos para el título h1 */
+h1{
+    font-weight: 700; /* Grosor de la fuente */
+    letter-spacing: -1.5px; /* Espaciado entre letras */
+    margin: 0; /* Margen cero */
+    margin-bottom: 15px; /* Margen inferior */
+}
+
+/* Estilos para el título h1 con clase "tittle" */
+h1.tittle{
+    font-size: 45px; /* Tamaño de la fuente */
+    line-height: 45px; /* Altura de línea */
+    margin: 0; /* Margen cero */
+    text-shadow: 0 0 10px rgba(16,64,74, 0.5); /* Sombra del texto */
+}
+
+/* Estilos para párrafos */
+p{
+    font-size: 14px; /* Tamaño de la fuente */
+    font-weight: 100; /* Grosor de la fuente */
+    line-height: 20px; /* Altura de línea */
+    letter-spacing: 0.5px; /* Espaciado entre letras */
+    margin: 20px 0 30px; /* Margen superior e inferior */
+    text-shadow: 0 0 10px rgba(16,64,74, 0.5); /* Sombra del texto */
+}
+
+/* Estilos para elementos span */
+span{
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-top: 25px; /* Margen superior */
+}
+
+/* Estilos para enlaces */
+a{
+    color: #333; /* Color del texto */
+    font-size: 14px; /* Tamaño de la fuente */
+    text-decoration: none; /* Sin subrayado */
+    margin: 15px 0; /* Margen superior e inferior */
+    transition: 0.3s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para enlaces al pasar el mouse */
+a:hover {
+    color: #4bb6b7; /* Color del texto al pasar el mouse */
+}
+
+/* Estilos para el contenido */
+.content{
+    display: flex; /* Establece el contenido como un contenedor flexible */
+    width:100%; /* Ancho al 100% */
+    height:40px; /* Altura de 50px */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-around; /* Espacio alrededor de los elementos */
+}
+
+/* Estilos para el contenedor del checkbox */
+.content .checkbox{
+    display: flex; /* Establece el checkbox como un contenedor flexible */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+/* Estilos para el input dentro del contenido */
+.content input{
+    accent-color: #333; /* Color del acento */
+    width: 12px; /* Ancho de 12px */
+    height: 10px; /* Altura de 12px */
+}
+
+/* Estilos para etiquetas */
+.content label {
+    font-size: 14px; /* Tamaño de la fuente */
+    user-select: none; /* No seleccionable */
+    padding-left: 5px; /* Padding izquierdo */
+}
+
+/* Estilos para botones */
+button{
+    position: relative; /* Posición relativa */
+    border-radius: 20px; /* Radio de borde */
+    border:1px solid #4bb6b7; /* Borde de 1px sólido */
+    background-color: #4bb6b7; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    font-size: 15px; /* Tamaño de la fuente */
+    font-weight: 700; /* Grosor de la fuente */
+    margin: 10px; /* Margen */
+    padding: 12px 80px; /* Padding */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: capitalize; /* Transforma texto a mayúsculas */
+    transition: 0.3s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para botones al pasar el mouse */
+button:hover{
+    letter-spacing: 3px; /* Espaciado entre letras al pasar el mouse */
+}
+
+/* Estilos para botones al hacer clic */
+button:active {
+    transform: scale(0.95); /* Escala al hacer clic */
+}
+
+/* Estilos para botones al enfocar */
+button :focus{
+    outline: none; /* Sin contorno al enfocar */
+}
+
+/* Estilos para botones con clase "ghost" */
+button.ghost {
+    background-color: rgba(225,225,225,0.2); /* Color de fondo */
+    border: 2px solid #fff; /* Borde de 2px sólido */
+    color: #fff; /* Color del texto */
+}
+
+/* Estilos para iconos dentro de botones con clase "ghost" */
+button.ghost i{
+    position: absolute; /* Posición absoluta */
+    opacity: 1; /* Opacidad 1 */
+    transition: 0.3s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para iconos de registro dentro de botones con clase "ghost" */
+button.ghost i.register{
+    right: 70px; /* Posición a la derecha 70px */
+}
+
+/* Estilos para iconos de inicio de sesión dentro de botones con clase "ghost" */
+button.ghost i.login{
+    left: 70px; /* Posición a la izquierda 70px */
+}
+
+/* Estilos para iconos al pasar el mouse en botones con clase "ghost" */
+button.ghost:hover i.register{
+    right: 40px ; /* Posición a la derecha 40px al pasar el mouse */
+    opacity: 1; /* Opacidad 1 */
+}
+
+/* Estilos para iconos al pasar el mouse en botones con clase "ghost" */
+button.ghost:hover i.login{
+    left: 40px; /* Posición a la izquierda 40px al pasar el mouse */
+    opacity: 1; /* Opacidad 1 */
+}
+
+/* Estilos para formularios */
+form{
+    background-color: #fff; /* Color de fondo */
+    display: flex; /* Establece el formulario como un contenedor flexible */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column; /* Dirección de los elementos hijos */
+    padding: 0 50px; /* Padding */
+    height: 100%; /* Altura al 100% */
+    text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para inputs */
+input{
+    background-color: #eee; /* Color de fondo */
+    border-radius: 10px; /* Radio de borde */
+    border: none; /* Sin borde */
+    padding: 12px 15px; /* Padding */
+    margin: 8px 0; /* Margen */
+    width: 100%; /* Ancho al 100% */
+}
+
+/* Estilos para el contenedor */
+.container{
+    background-color: #fff; /* Color de fondo */
+    border-radius: 25px; /* Radio de borde */
+    box-shadow: 0 14px 28px  rgba(0, 0, 0,0.25), 0 10px 10px rgba(0,0,0,0.22); /* Sombra */
+    position: relative; /* Posición relativa */
+    overflow: hidden; /* Oculta el desbordamiento */
+    width: 768px ; /* Ancho de 768px */
+    max-width: 100%; /* Ancho máximo al 100% */
+    min-height: 500px; /* Altura mínima de 500px */
+}
+
+/* Estilos para el contenedor del formulario */
+.form-container{
+    position: absolute; /* Posición absoluta */
+    top:0; /* Posiciona arriba */
+    height: 100%; /* Altura al 100% */
+    transition: all 0.6s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para el contenedor de inicio de sesión */
+.login-container{
+    left: 0; /* Posiciona a la izquierda */
+    width: 50%; /* Ancho al 50% */
+    z-index:2; /* Índice z */
+}
+
+/* Estilos para el contenedor cuando está activo el panel derecho */
+.container.right-panel-active .login-container{
+    transform: translateX(100%); /* Transición al 100% en X */
+}
+
+/* Estilos para el contenedor de registro */
+.register-container{
+    left: 0; /* Posiciona a la izquierda */
+    width: 50%; /* Ancho al 50% */
+    opacity: 0; /* Opacidad 0 */
+    z-index: 1; /* Índice z */
+}
+
+/* Estilos para el contenedor cuando está activo el panel derecho */
+.container.right-panel-active .register-container{
+    transform: translateX(100%); /* Transición al 100% en X */
+    opacity: 1; /* Opacidad 1 */
+    z-index: 5; /* Índice z */
+    animation: show 0.6s; /* Animación de mostrar */
+}
+
+/* Keyframes para la animación de mostrar */
+@keyframes show{
+
+    0%,
+    49.99%{
+        opacity: 0; /* Opacidad 0 */
+        z-index: 1; /* Índice z */
+    }
+
+    50%,
+    100%{
+        opacity: 1; /* Opacidad 1 */
+        z-index: 5; /* Índice z */
+    }
+}
+
+/* Estilos para el contenedor del overlay */
+.overlay-container{
+    position: absolute; /* Posición absoluta */
+    top: 0; /* Posiciona arriba */
+    left: 50%; /* Posiciona a la mitad */
+    width: 50%; /* Ancho al 50% */
+    height: 100%; /* Altura al 100% */
+    overflow: hidden; /* Oculta el desbordamiento */
+    transition: transform 0.6s ease-in-out; /* Transición suave */
+    z-index: 100; /* Índice z */
+}
+
+/* Estilos para el contenedor del overlay cuando está activo el panel derecho */
+.container.right-panel-active .overlay-container{
+    transform: translateX(-100%); /* Transición al -100% en X */
+}
+
+/* Estilos para el overlay */
+.overlay{
+
+    background-image: url("C:/Users/catal/OneDrive/Desktop/Proyecto_Mejorado/Git/logo_10.png"); /* Imagen de fondo */
+    background-repeat: repeat; /* Sin repetición */
+    background-size: contain; /* Tamaño de la imagen */
+    background-position: -10px 0 ; /* Mover la imagen 10px hacia la izquierda */
+    color: #fff; /* Color del texto */
+    position: absolute; /* Posición relativa */
+    left: -100%; /* Posiciona a la izquierda -100% */
+    height: 100%; /* Altura al 100% */
+    width: 200%; /* Ancho al 200% */
+    transform: translateX(0); /* Transición en X */
+    transition: transform 0.6s ease-in-out; /* Transición suave */
+    background-position: 120% 120%; /* Centra la imagen en el contenedor */
+}
+
+/* Añade este media query para ajustar la posición de la imagen en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .overlay {
+        background-position: 2 2; /* Muestra la imagen completa en pantallas más pequeñas */
+    }
+}
+
+/* Estilos para el overlay antes del contenido */
+.overlay::before{
+    content: ""; /* Contenido vacío */
+    position: absolute; /* Posición absoluta */
+    left: 0; /* Posiciona a la izquierda */
+    right: 0; /* Posiciona a la derecha */
+    top: 0; /* Posiciona arriba */
+    bottom: 0; /* Posiciona abajo */
+    background: linear-gradient(
+        to top,
+        rgba(46,94,109 ,0.4) 40%, 
+         rgba(46,94,109 , 0)
+    ); /* Gradiente lineal */
+}
+
+/* Estilos para el overlay cuando está activo el panel derecho */
+.container.right-panel-active .overlay{
+
+    transform: translateX(50%); /* Transición al 50% en X */
+}
+
+/* Estilos para el panel del overlay */
+.overlay-panel{
+    position: absolute; /* Posición absoluta */
+    display: flex; /* Establece el panel como un contenedor flexible */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column; /* Dirección de los elementos hijos */
+    padding: 0 40px; /* Padding */
+    text-align: center; /* Alineación del texto */
+    top: 0; /* Posiciona arriba */
+    height: 100%; /* Altura al 100% */
+    width: 50%; /* Ancho al 50% */
+    transform: translateX(0); /* Transición en X */
+    transition:transform 0.6s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para el panel de la izquierda */
+.overlay-left{
+
+    transform: translateX(-30%); /* Transición al -20% en X */
+}
+
+/* Estilos para el panel de la izquierda cuando está activo el panel derecho */
+.container.right-panel-active .overlay-left{
+
+    transform: translateX(0); /* Transición a 0 en X */
+}
+
+/* Estilos para el panel de la derecha */
+.overlay-right{
+    right: 0; /* Posiciona a la derecha */
+    transform: translateX(0); /* Transición en X */
+}
+
+/* Estilos para el panel de la derecha cuando está activo el panel derecho */
+.container.right-panel-active .overlay-right{
+
+    transform: translateX(20%); /* Transición al 20% en X */
+}
+
+/* Estilos para el contenedor de redes sociales */
+.social-container{
+    margin: 20px 0; /* Margen */
+}
+
+/* Estilos para enlaces de redes sociales en el contenedor */
+.social-container a {
+    border: 1px solid #dddddd; /* Borde de 1px sólido */
+    border-radius: 50%; /* Radio de borde */
+    display: inline-flex; /* Elemento en línea flexible */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 0 5px; /* Margen */
+    height: 40px; /* Altura de 40px */
+    width: 40px; /* Ancho de 40px */
+    transition: 0.3s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para enlaces de redes sociales al pasar el mouse */
+.social-container a:hover{
+
+    border: 1px solid #4bb6b7; /* Borde de 1px sólido al pasar el mouse */
+}
