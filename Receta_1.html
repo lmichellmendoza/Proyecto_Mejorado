@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receta Médica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to bottom right, black, purple);
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 1000px;
+            height: 600px;
+            position: relative;
+            margin: 0 auto;
+            background-image: url('Receta.png');
+            background-size: cover;
+        }
+        .input-field {
+            position: absolute;
+            font-size: 14px;
+            border: none;
+            background-color: transparent;
+        }
+        .text-area {
+            position: absolute;
+            font-size: 15px;
+            border: 1px solid white;
+            background-color: white;
+            resize: none;
+            padding: 25px;
+        }
+        #nombre_paciente { top: 142px; left: 210px; width: 350px; height: 20px; border: 1px solid rgb(0, 0, 0); }
+        #expediente_paciente { top: 145px; left: 710px; width: 150px; height: 20px; border: 1px solid black; }
+        #edad_paciente { top: 170px; left: 100px; width: 50px; height: 20px; border: 1px solid black; }
+        #peso_paciente { top: 173px; left: 330px; width: 55px; height: 20px; border: 1px solid black; }
+        #diag_paciente { top: 175px; left: 600px; width: 350px; height: 20px; border: 1px solid black; }
+        #fec_nac_paciente { top: 204px; left: 220px; width: 140px; height: 20px; border: 1px solid black; }
+        #domicilio_paciente { top: 205px; left: 470px; width: 480px; height: 20px; border: 1px solid black; }
+        #nombre_medico { top: 522px; left: 150px; width: 440px; height: 18px; }
+        #cedula_medico { top: 538px; left: 150px; width: 100px; height: 17px; }
+        #especialidad_medico { top: 550px; left: 150px; width: 150px; height: 16px; }
+        #egresado_medico { top: 565px; left: 150px; width: 150px; height: 16px; }
+        #especificaciones { top: 245px; left: 50px; width: 850px; height: 210px; }
+        #fecha {
+            position: absolute;
+            top: 70px;
+            left: 800px;
+            font-size: 24px;
+        }
+        #calendar {
+            position: absolute;
+            display: none;
+        }
+        .button {
+            position: absolute;
+            padding: 7px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #boton_fecha { top: 60px; left: 690px; }
+        #boton_pdf { top: 540px; left: 733px; width: 180px; height: 60px; }
+        #medicos_combobox { top: 470px; left: 400px; width: 200px; height: 30px; }
+    </style>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="nombre_paciente" class="input-field">
+        <input type="text" id="expediente_paciente" class="input-field">
+        <input type="text" id="edad_paciente" class="input-field">
+        <input type="text" id="peso_paciente" class="input-field">
+        <input type="text" id="diag_paciente" class="input-field">
+        <input type="text" id="fec_nac_paciente" class="input-field">
+        <input type="text" id="domicilio_paciente" class="input-field">
+        <input type="text" id="nombre_medico" class="input-field">
+        <input type="text" id="cedula_medico" class="input-field">
+        <input type="text" id="especialidad_medico" class="input-field">
+        <input type="text" id="egresado_medico" class="input-field">
+        <textarea id="especificaciones" class="text-area"></textarea>
+        <div id="fecha"></div>
+        <button id="boton_fecha" class="button">Fecha</button>
+        <button id="boton_pdf" class="button">Generar PDF</button>
+        <select id="medicos_combobox" class="input-field"></select>
+        <div id="calendar"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var medicos_info = {
+                'Dr. Jan': {
+                    'nombre': 'Dr. Jan',
+                    'cedula': '123456',
+                    'especialidad': 'Cardiología',
+                    'egresado': 'UNAM'
+                },
+                'Dr. Federico': {
+                    'nombre': 'Dr. Federico',
+                    'cedula': '654321',
+                    'especialidad': 'Neurología',
+                    'egresado': 'IPN'
+                },
+                'Dr. Diana': {
+                    'nombre': 'Dr. Diana',
+                    'cedula': '112233',
+                    'especialidad': 'Pediatría',
+                    'egresado': 'UAM'
+                }
+            };
+
+            $.each(medicos_info, function(key, value) {
+                $('#medicos_combobox').append('<option value="' + key + '">' + key + '</option>');
+            });
+
+            $('#medicos_combobox').on('change', function() {
+                var selectedMedico = $(this).val();
+                if (medicos_info[selectedMedico]) {
+                    var info = medicos_info[selectedMedico];
+                    $('#nombre_medico').val(info.nombre);
+                    $('#cedula_medico').val(info.cedula);
+                    $('#especialidad_medico').val(info.especialidad);
+                    $('#egresado_medico').val(info.egresado);
+                }
+            });
+
+            $('#boton_fecha').on('click', function() {
+                $('#calendar').toggle();
+            });
+
+            $('#calendar').datepicker({
+                dateFormat: 'dd/mm/yy',
+                onSelect: function(dateText) {
+                    $('#fecha').text(dateText);
+                    $('#calendar').hide();
+                }
+            });
+
+            $('#boton_pdf').on('click', function() {
+                var nombre_paciente = $('#nombre_paciente').val();
+                var expediente_paciente = $('#expediente_paciente').val();
+                var edad_paciente = $('#edad_paciente').val();
+                var peso_paciente = $('#peso_paciente').val();
+                var diag_paciente = $('#diag_paciente').val();
+                var fec_nac_paciente = $('#fec_nac_paciente').val();
+                var domicilio_paciente = $('#domicilio_paciente').val();
+                var fecha_seleccionada = $('#fecha').text();
+                var nombre_medico = $('#nombre_medico').val();
+                var cedula = $('#cedula_medico').val();
+                var especialidad = $('#especialidad_medico').val();
+                var egresado = $('#egresado_medico').val();
+                var especificaciones = $('#especificaciones').val();
+
+                if (!nombre_paciente || !expediente_paciente) {
+                    alert('Por favor, ingrese el nombre y el expediente del paciente.');
+                    return;
+                }
+
+                var informacion_total = `
+                    ${fecha_seleccionada}
+                    ${nombre_paciente} ${expediente_paciente}
+                    ${edad_paciente} ${peso_paciente} ${diag_paciente}
+                    ${fec_nac_paciente} ${domicilio_paciente}
+                    ${especificaciones}
+                    ${nombre_medico}
+                    ${cedula}
+                    ${especialidad}
+                    ${egresado}
+                `;
+
+                var qrContainer = document.createElement('div');
+                var qrcode = new QRCode(qrContainer, {
+                    text: informacion_total,
+                    width: 100,
+                    height: 100,
+                });
+
+                setTimeout(function() {
+                    var qrImg = qrContainer.querySelector('img').src;
+
+                    var { jsPDF } = window.jspdf;
+                    var doc = new jsPDF('p', 'mm', 'a4');
+                    var img = new Image();
+                    img.src = 'Receta.png';
+
+                    img.onload = function() {
+                        var imgWidth = 210; // A4 width in mm
+                        var imgHeight = (imgWidth * 600) / 1000; // Proporción 1000:600
+
+                        doc.addImage(img, 'PNG', 0, 0, imgWidth, imgHeight);
+                        doc.setFontSize(10);
+                        doc.text(fecha_seleccionada, 168, 18);
+                        doc.text(nombre_paciente, 45, 30); 
+                        doc.text(expediente_paciente, 150, 31); 
+                        doc.text(edad_paciente, 24, 36); 
+                        doc.text(peso_paciente, 80, 37); 
+                        doc.text(diag_paciente, 125, 37); 
+                        doc.text(fec_nac_paciente, 45, 43); 
+                        doc.text(domicilio_paciente, 98, 44); 
+                        doc.text(especificaciones, 10, 60); 
+                        doc.text(nombre_medico, 33, 105); 
+                        doc.text(cedula, 33, 108); 
+                        doc.text(especialidad, 33, 111); 
+                        doc.text(egresado, 33, 114); 
+
+                        var qrX = (imgWidth - 20) / 2; // Ajuste según tamaño del QR y la imagen
+                        var qrY = imgHeight / 2 + 135; // Ajuste según la altura deseada
+                        doc.addImage(qrImg, 'PNG', qrX, qrY, 70, 70); // Cambia el tamaño del QR aquí
+
+                        // Nombre del archivo
+                        var nombreArchivo = `${nombre_paciente}_${expediente_paciente}.pdf`;
+                        doc.save(nombreArchivo);
+                    };
+                }, 1000); 
+            });
+        });
+    </script>
+</body>
+</html>
