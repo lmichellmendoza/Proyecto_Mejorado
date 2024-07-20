@@ -1,3 +1,5 @@
+console.log("El archivo script_menu.js se ha cargado correctamente");
+
 document.getElementById('btn_ayuda').addEventListener('click', function() {
     ayuda();
 });
@@ -19,8 +21,7 @@ document.getElementById('btn_cerrar_sesion').addEventListener('click', function(
 });
 
 function ayuda() {
-    // Implement your logic here
-    console.log("Pacientes button clicked");
+    window.location.href = 'Pacientes.html';
 }
 
 function abrirReceta() {
@@ -28,16 +29,14 @@ function abrirReceta() {
 }
 
 function abrirVentanaRegistro() {
-    // Implement your logic here
-    console.log("Registrar Niño button clicked");
+    window.location.href = 'RegistrarNino.html';
 }
 
 function abrirInf() {
-    // Implement your logic here
-    console.log("Escanear Receta button clicked");
+    window.location.href = 'EscanearReceta.html';
 }
 
 function cerrarSesion() {
-    // Implement your logic here
-    console.log("Cerrar Sesión button clicked");
+    window.location.href = 'index.html';
 }
+

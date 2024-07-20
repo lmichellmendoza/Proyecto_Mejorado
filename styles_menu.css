@@ -1,6 +1,19 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+*{
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
 body {
     background-image: linear-gradient(to bottom right,black, purple);
-    font-family: 'Microsoft YaHei UI Light', sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,6 +23,7 @@ body {
 
 .container {
     text-align: center;
+    
 }
 
 .titulo {
@@ -17,7 +31,7 @@ body {
     font-size: 40px;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn {
@@ -33,6 +47,7 @@ body {
     border-radius: 25px;
     cursor: pointer;
     transition: background 0.3s;
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn:hover {
