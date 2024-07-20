@@ -1,0 +1,42 @@
+body {
+    background-image: linear-gradient(to bottom right,black, purple);
+    font-family: 'Microsoft YaHei UI Light', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.titulo {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    display: block;
+    width: 200px;
+    height: 50px;
+    background: linear-gradient(to right, #6a0dad, #167e85);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px auto;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #5500a3, #0000cc);
+}
+
+
