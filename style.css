@@ -61,7 +61,7 @@ a{
 
 /* Estilos para enlaces al pasar el mouse */
 a:hover {
-    color: #4bb6b7; /* Color del texto al pasar el mouse */
+    color: #b74bb0; /* Color del texto al pasar el mouse */
 }
 
 /* Estilos para el contenido */
@@ -98,8 +98,8 @@ a:hover {
 button{
     position: relative; /* Posición relativa */
     border-radius: 20px; /* Radio de borde */
-    border:1px solid #4bb6b7; /* Borde de 1px sólido */
-    background-color: #4bb6b7; /* Color de fondo */
+    border:1px solid #b74bb0; /* Borde de 1px sólido */
+    background-color: #b74bb0; /* Color de fondo */
     color: #fff; /* Color del texto */
     font-size: 15px; /* Tamaño de la fuente */
     font-weight: 700; /* Grosor de la fuente */
@@ -278,7 +278,7 @@ input{
     width: 200%; /* Ancho al 200% */
     transform: translateX(0); /* Transición en X */
     transition: transform 0.6s ease-in-out; /* Transición suave */
-    background-position: 120% 120%; /* Centra la imagen en el contenedor */
+    background-position: 100% 100%; /* Centra la imagen en el contenedor */
 }
 
 /* Añade este media query para ajustar la posición de la imagen en pantallas más pequeñas */
