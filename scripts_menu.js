@@ -1,4 +1,3 @@
-console.log("El archivo script_menu.js se ha cargado correctamente");
 
 document.getElementById('btn_ayuda').addEventListener('click', function() {
     ayuda();

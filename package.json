@@ -2,11 +2,19 @@
   "name": "git",
   "version": "1.0.0",
   "description": "",
-  "main": "PantallaPacientes.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "espress": "^0.0.0",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.10.3"
+  }
 }
