@@ -31,16 +31,16 @@
     
         let Login = "SELECT * FROM usuario WHERE username=? AND ContraseñaUsuario=?";
         conexion.query(Login, [username, password], (err, results) => {
-            /*if (err) {
+            if (err) {
                 console.error('Error al ejecutar la consulta:', err);
                 res.status(500).send('Error en el servidor');
                 return;
-            }*/
+            }
     
             if (results.length > 0) {
-                res.json('Login exitoso'); //Se movio a un jsson para que envie la respuesta
+                res.json({ success: true, message: 'Login exitoso' });
             } else {
-                res.json('Usuario o contraseña incorrectos');
+                res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
             }
         });
     });
