@@ -1,4 +1,4 @@
-/*
+
 const express = require("express") //Importa la libreria
 
 //Objeto para llamar los métos de express
@@ -17,11 +17,11 @@ app.use(express.static("public"));
 //Creando el servidor
 //1.Configurar el puerto usado el servidor local
 app.listen(3000, function(){
-    console.log("servidor configurado correctamente: http://localhost:3000");
+ console.log("servidor configurado correctamente: http://localhost:3000");
 });//En caso de errores 5000 o 8000
 
 
-*/
+
 
 
 
