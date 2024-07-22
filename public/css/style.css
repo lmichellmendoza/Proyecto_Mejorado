@@ -374,3 +374,12 @@ input{
 
     border: 1px solid #4bb6b7; /* Borde de 1px sólido al pasar el mouse */
 }
+
+.login-container .error {
+    display: none;
+    margin-top: 20px;
+    border-radius: 3px;
+    background: #ce1818;
+    color: #fff;
+    padding: 15px 10px;
+}
