@@ -15,4 +15,6 @@ conexion.connect(function(e) {
   console.log('Conexión exitosa');
 });
 
-conexion.end(); //Termina la conexion con la BD
+//conexion.end(); //Termina la conexion con la BD
+
+module.exports=conexion;//Exporta la conexion

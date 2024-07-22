@@ -269,7 +269,7 @@ input{
 /* Estilos para el overlay */
 .overlay{
 
-    background-image: url("C:/Users/catal/OneDrive/Desktop/Proyecto_Mejorado/Git/logo_10.png"); /* Imagen de fondo */
+    background-image: url("../images/logo_10.png"); /* Imagen de fondo */
     background-repeat: repeat; /* Sin repetición */
     background-size: contain; /* Tamaño de la imagen */
     background-position: -10px 0 ; /* Mover la imagen 10px hacia la izquierda */
