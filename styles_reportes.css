@@ -1,0 +1,191 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-bottom: 3px solid #8e44ad; /* Color morado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    height: 150px;
+    margin-right: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: #8e44ad; /* Color morado */
+}
+
+.budgets {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.budget-box {
+    margin-right: 20px;
+}
+
+.budget-box h3 {
+    margin: 0;
+    color: #333;
+}
+
+.budget-box p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #8e44ad; /* Color morado */
+}
+
+#modificar-presupuestos {
+    background-color: #8e44ad; /* Color morado */
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#modificar-presupuestos:hover {
+    background-color: #732d91; /* Tono más oscuro de morado */
+}
+
+.main-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+    .main-form {
+        max-width: 100%;
+    }
+}
+
+.main-form h2 {
+    color: #8e44ad; /* Color morado */
+    border-bottom: 2px solid #8e44ad; /* Color morado */
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 1 1 calc(25% - 15px);
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #8e44ad; /* Color morado */
+    outline: none;
+}
+
+button#añadir-apoyo-medico {
+    background-color: #f1c40f; /* Color amarillo */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button#añadir-apoyo-medico:hover {
+    background-color: #d4ac0d; /* Tono más oscuro de amarillo */
+}
+
+.table-section {
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-section h2 {
+    color: #8e44ad; /* Color morado */
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#search {
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
