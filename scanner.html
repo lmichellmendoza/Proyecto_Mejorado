@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decodificador de Códigos QR</title>
+    <link rel="stylesheet" href="styles_scaner.css">
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .input-field {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 0px;
+        }
+        .btn {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #resultBox {
+            border: 3px solid #000;
+            padding: 20px; /* Cambia el tamaño del padding aquí */
+            margin-top: 0px;
+            display: inline-block;
+            word-wrap: break-word;
+            background-color: #fff;
+            max-width: 80%;
+            box-sizing: content-box;
+            min-width: 0px; /* Cambia el ancho mínimo aquí */
+            min-height: 0px; /* Cambia el alto mínimo aquí */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="qrInput">Entrada del Escáner:</label>
+            <input type="text" id="qrInput" class="input-field">
+        </div>
+        <div class="form-group">
+            <button id="useScannerBtn" class="btn">Usar Escáner</button>
+        </div>
+        <div id="resultBox"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const qrInput = document.getElementById('qrInput');
+            const useScannerBtn = document.getElementById('useScannerBtn');
+            const resultBox = document.getElementById('resultBox');
+
+            useScannerBtn.addEventListener('click', () => {
+                document.removeEventListener('keypress', captureScannerInput);
+                document.addEventListener('keypress', captureScannerInput);
+                alert('El escáner está listo. Escanea un código QR.');
+            });
+
+            function captureScannerInput(event) {
+                if (event.key === 'Enter') {
+                    const qrData = qrInput.value;
+                    if (qrData) {
+                        resultBox.textContent = `Datos del QR escaneado: ${qrData}`;
+                        resultBox.style.display = 'inline-block';
+                        qrInput.value = ''; // Limpia la entrada después de capturar los datos
+                    } else {
+                        alert('No se ha ingresado ningún dato del QR.');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
