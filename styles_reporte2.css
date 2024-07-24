@@ -1,0 +1,264 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho y alto total de los elementos */
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Fuente utilizada para el texto */
+    margin: 0; /* Elimina el margen por defecto del cuerpo */
+    padding: 0; /* Elimina el padding por defecto del cuerpo */
+    background-color: #f8f9fa; /* Color de fondo claro para toda la página */
+}
+
+
+.container {
+    width: 100%; /* El contenedor ocupará el 100% del ancho disponible */
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    padding: 20px; /* Espaciado interno del contenedor */
+}
+
+header {
+    display: flex; /* Usa flexbox para organizar los elementos dentro del header */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    background-color: #fff; /* Color de fondo blanco para el header */
+    padding: 15px 30px; /* Espaciado interno en el header */
+    border-bottom: 3px solid #8e44ad; /* Borde inferior morado para el header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para el header */
+}
+
+.logo {
+    height: 150px; /* Altura del logo */
+    margin-right: 20px; /* Espacio a la derecha del logo */
+}
+
+header h1 {
+    margin: 0; /* Elimina el margen del título */
+    color: #8e44ad; /* Color del texto del título (morado) */
+}
+
+.budgets {
+    display: flex; /* Usa flexbox para organizar los elementos dentro de .budgets */
+    justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+    background-color: #fff; /* Color de fondo blanco */
+    padding: 15px; /* Espaciado interno de .budgets */
+    margin: 15px 0; /* Margen superior e inferior de .budgets */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para .budgets */
+}
+
+.budget-box {
+    margin-right: 20px; /* Espacio a la derecha de cada caja de presupuesto */
+}
+
+.budget-box h3 {
+    margin: 0; /* Elimina el margen del título en cada caja de presupuesto */
+    color: #333; /* Color del texto del título (gris oscuro) */
+}
+
+.budget-box p {
+    margin: 5px 0; /* Margen superior e inferior del párrafo */
+    font-weight: bold; /* Hace el texto en negrita */
+    color: #27ae60; /* Color verde para los valores del presupuesto */
+}
+
+button {
+    background-color: #8e44ad; /* Color de fondo del botón (morado) */
+    color: #fff; /* Color del texto del botón (blanco) */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+    margin: 10px 0; /* Margen superior e inferior del botón */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+button:hover {
+    background-color: #732d91; /* Color de fondo morado oscuro cuando se pasa el cursor */
+}
+
+.main-content {
+    display: flex; /* Usa flexbox para organizar los elementos dentro de .main-content */
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px; /* Ancho del menú lateral */
+    height: 100%; /* Altura completa del menú lateral */
+    position: fixed; /* Posiciona el menú lateral de manera fija */
+    left: -250px; /* Inicialmente oculta el menú lateral fuera del borde izquierdo */
+    top: 0; /* Alinea el menú lateral al borde superior */
+    background-color: #8e44ad; /* Color de fondo morado para el menú lateral */
+    overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+    transition: 0.5s; /* Transición suave para el desplazamiento del menú lateral */
+    padding-top: 60px; /* Espaciado superior para el contenido del menú lateral */
+    z-index: 1; /* Asegura que el menú lateral esté por encima de otros elementos */
+}
+
+.sidebar .close-btn {
+    position: absolute; /* Posiciona el botón de cierre de manera absoluta dentro del menú lateral */
+    top: 10px; /* Alinea el botón 10px desde el borde superior */
+    right: 25px; /* Alinea el botón 25px desde el borde derecho */
+    font-size: 36px; /* Tamaño de la fuente del botón de cierre */
+    margin-left: 50px; /* Espacio a la izquierda del botón */
+}
+
+.sidebar button {
+    display: block; /* Muestra los botones como bloques */
+    padding: 20px 30px; /* Espaciado interno de los botones */
+    text-align: left; /* Alinea el texto a la izquierda */
+    background: none; /* Elimina el fondo de los botones */
+    border: none; /* Elimina el borde de los botones */
+    color: #fff; /* Color del texto de los botones (blanco) */
+    font-size: 18px; /* Tamaño de la fuente de los botones */
+    width: 100%; /* Ancho completo de los botones */
+    text-decoration: none; /* Elimina la decoración del texto en los botones */
+    transition: 0.3s; /* Transición suave para el fondo de los botones */
+}
+
+.sidebar button:hover {
+    background-color: #732d91; /* Color de fondo morado oscuro al pasar el cursor sobre el botón */
+}
+
+.open-btn {
+    font-size: 20px; /* Tamaño de la fuente del botón para abrir el menú lateral */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+    background-color: #8e44ad; /* Color de fondo morado para el botón */
+    color: white; /* Color del texto del botón (blanco) */
+    padding: 10px 15px; /* Espaciado interno del botón */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    position: absolute; /* Posiciona el botón de manera absoluta */
+    top: 20px; /* Alinea el botón 20px desde el borde superior */
+    left: 20px; /* Alinea el botón 20px desde el borde izquierdo */
+}
+
+.open-btn:hover {
+    background-color: #732d91; /* Color de fondo morado oscuro al pasar el cursor sobre el botón */
+}
+
+/* Estilo para el contenedor del formulario principal */
+.form-container {
+    flex: 1; /* Ocupa el espacio disponible en la columna izquierda */
+    margin-right: 20px; /* Espacio entre el formulario y la columna derecha */
+    padding: 20px; /* Espaciado interno */
+    background-color: #fff; /* Color de fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilo para las filas del formulario */
+/* Para cambiar la disposición vertical/horizontal, ajustar el valor de 'flex-direction' */
+.form-row {
+    display: block; /* Disposición vertical de los elementos dentro de .form-row */
+    justify-content: space-between; /* Espacio entre los elementos de .form-row */
+    margin-bottom: 10px; /* Espacio vertical entre filas de formulario */
+}
+
+/* Estilo para los grupos de formulario */
+/* Para cambiar el espacio horizontal entre los campos, ajustar 'margin-right' */
+.form-group {
+    flex: 50; /* Permite que el grupo de formulario crezca y ocupe el espacio disponible */
+    margin-right: 10px; /* Espacio horizontal entre los campos del formulario */
+}
+
+.form-group label {
+    display: block; /* Muestra las etiquetas como bloques */
+    margin-bottom: 5px; /* Espacio inferior debajo de la etiqueta */
+    color: #333; /* Color del texto de las etiquetas (gris oscuro) */
+}
+
+.form-group input,
+.form-group select {
+    width: 50%; /* Ancho completo de los campos de entrada y selección */
+    padding: 8px; /* Espaciado interno de los campos */
+    border: 1px solid #ddd; /* Borde ligero para los campos */
+    border-radius: 5px; /* Bordes redondeados de los campos */
+}
+
+.form-group input[readonly] {
+    background-color: #e9ecef; /* Color de fondo para los campos de entrada de solo lectura */
+}
+
+.tab-content {
+    display: none; /* Oculta el contenido de la pestaña por defecto */
+}
+
+.tab-content.active {
+    display: block; /* Muestra el contenido de la pestaña activa */
+}
+
+.table-container {
+    margin-top: 20px; /* Margen superior para el contenedor de la tabla */
+}
+
+table {
+    width: 100%; /* Ancho completo de la tabla */
+    border-collapse: collapse; /* Colapsa los bordes de la tabla para evitar doble bordes */
+}
+
+table th,
+table td {
+    padding: 10px; /* Espaciado interno de las celdas */
+    border: 1px solid #ddd; /* Borde ligero para las celdas */
+    text-align: left; /* Alinea el texto a la izquierda en las celdas */
+}
+
+table th {
+    background-color: #8e44ad; /* Color de fondo morado para los encabezados de la tabla */
+    color: #fff; /* Color del texto blanco para los encabezados de la tabla */
+}
+
+#search {
+    padding: 10px; /* Espaciado interno del campo de búsqueda */
+    width: 80%; /* Ancho del campo de búsqueda */
+    border: 1px solid #ddd; /* Borde ligero para el campo de búsqueda */
+    border-radius: 5px; /* Bordes redondeados del campo de búsqueda */
+    margin-bottom: 10px; /* Margen inferior del campo de búsqueda */
+}
+
+#clear-search {
+    background-color: #e74c3c; /* Color de fondo rojo para el botón de limpiar búsqueda */
+}
+
+#clear-search:hover {
+    background-color: #c0392b; /* Color de fondo rojo oscuro al pasar el cursor sobre el botón */
+}
+
+/* Agregar estilos para ocultar el recuadro del botón de cierre */
+.close-btn {
+    border: none; /* Elimina el borde del botón de cierre */
+    background: none; /* Elimina el fondo del botón de cierre */
+    font-size: 24px; /* Tamaño de la fuente del botón de cierre */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+}
+
+/* Estilo para reducir el tamaño del campo de búsqueda */
+#search-field {
+    width: 50%; /* Ancho del campo de búsqueda reducido */
+}
+
+/* Estilos adicionales para los nuevos formularios y subtítulos */
+.form-container h3 {
+    margin-top: 20px; /* Margen superior para los subtítulos dentro del contenedor del formulario */
+    font-size: 18px; /* Tamaño de la fuente para los subtítulos */
+    color: #333; /* Color del texto para los subtítulos (gris oscuro) */
+}
+
+/* Estilo para la tabla de resultados */
+.table-container {
+    margin-top: 20px; /* Margen superior para el contenedor de la tabla */
+}
+
+.table-container table {
+    width: 100%; /* Ancho completo de la tabla */
+    border-collapse: collapse; /* Colapsa los bordes de la tabla */
+}
+
+.table-container th, .table-container td {
+    border: 1px solid #ddd; /* Borde ligero para las celdas */
+    padding: 8px; /* Espaciado interno de las celdas */
+    text-align: left; /* Alinea el texto a la izquierda en las celdas */
+}
