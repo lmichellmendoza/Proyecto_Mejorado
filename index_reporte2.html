@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configura el conjunto de caracteres y la vista para dispositivos móviles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadro de Mando Hospitalario</title>
+    <!-- Enlaza con el archivo de estilos CSS para la apariencia de la página -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Enlaza con Font Awesome para los iconos utilizados en la página -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- **1. Cabecera del Sitio (Header) -->
+        <header>
+            <div class="logo-container">
+                <!-- Logo del hospital o aplicación -->
+                <img src="images/logo-CRIT-Hidalgo-removebg-preview.png" alt="Logo CRIT Hidalgo" class="logo">
+            </div>
+            <div class="header-content">
+                <!-- Título principal de la página -->
+                <h1>Cuadro de Mando Hospitalario</h1>
+                <div class="budgets">
+                    <!-- Cajas de presupuesto para mostrar diferentes tipos de presupuesto -->
+                    <div class="budget-box">
+                        <h3>Presupuesto Dos Meses Anteriores:</h3>
+                        <!-- Campo editable para el presupuesto dos meses anteriores -->
+                        <p id="presupuesto-dos-meses-anteriores" contenteditable="true">$7000</p>
+                    </div>
+                    <div class="budget-box">
+                        <h3>Presupuesto Mensual Anterior:</h3>
+                        <!-- Campo editable para el presupuesto mensual anterior -->
+                        <p id="presupuesto-mensual-anterior" contenteditable="true">$8000</p>
+                    </div>
+                    <div class="budget-box">
+                        <h3>Presupuesto Mensual Actual:</h3>
+                        <!-- Campo editable para el presupuesto mensual actual -->
+                        <p id="presupuesto-mensual-actual" contenteditable="true">$10000</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <!-- **2. Menú Lateral (Sidebar) -->
+            <nav id="sidebar" class="sidebar">
+                <button class="close-btn" style="border: none; background: none;">&times;</button>
+                <div class="dropdown"> <!-- Agregamos el contenedor para el menú desplegable -->
+                    <button class="dropbtn">Menu</button> <!-- Botón que muestra el menú desplegable -->
+                    <div class="dropdown-content"> <!-- Contenido del menú desplegable -->
+                        <button class="tab-button active" data-tab="personal"><i class="fa fa-user"></i> Datos Personales</button>
+                        <button class="tab-button" data-tab="externo"><i class="fa fa-hand-holding-usd"></i> Ayudas Externas con Presupuesto</button>
+                        <button class="tab-button" data-tab="sin-presupuesto"><i class="fa fa-hands-helping"></i> Ayudas Externas sin Presupuesto</button>
+                        <button class="tab-button" data-tab="anual"><i class="fa fa-calendar-alt"></i> Plan Anual</button>
+                        <button class="tab-button" data-tab="derivaciones"><i class="fa fa-exchange-alt"></i> Derivaciones</button>
+                        <button class="tab-button" data-tab="traslados"><i class="fa fa-ambulance"></i> Traslados</button>
+                        <button class="tab-button" data-tab="incidentes"><i class="fa fa-exclamation-triangle"></i> Incidentes Críticos</button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <!-- Botón para abrir el menú lateral -->
+                <button id="open-sidebar" class="open-btn"><i class="fa fa-bars"></i> Menu</button>
+                
+                <div class="form-container">
+                    <!-- **3. Contenidos de las Pestañas -->
+                    <!-- Cada div con la clase 'tab-content' corresponde a una pestaña -->
+                    <div class="tab-content active" id="personal">
+                        <!-- Contenido de la pestaña de Datos Personales -->
+                        <h1>Sistema Infantil Teletón</h1>
+                        <h2>DIRECCION MEDICA</h2>
+                        <h3>Datos Personales</h3>
+
+                        <form id="personal-form">
+                            <!-- Formulario para ingresar datos personales -->
+                            <div class="form-row-wrapper">
+                            <div class="form-group">
+                                    <label for="numero-carnet">Número de Carnet:</label>
+                                    <!-- Campo para el número de carnet -->
+                                    <input type="text" id="numero-carnet" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre(s):</label>
+                                        <!-- Campo para el nombre -->
+                                        <input type="text" id="nombre" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido-paterno">Apellido Paterno:</label>
+                                        <!-- Campo para el apellido paterno -->
+                                        <input type="text" id="apellido-paterno" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido-materno">Apellido Materno:</label>
+                                        <!-- Campo para el apellido materno -->
+                                        <input type="text" id="apellido-materno" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="edad">Edad:</label>
+                                            <input type="text" id="edad" name="edad" required>
+                                        </div>
+                            <div class="form-row-wrapper">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="genero">Sexo:</label>
+                                        <!-- Campo para seleccionar el sexo -->
+                                        <select id="genero" required>
+                                            <option value="masculino">Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="entidad-federativa">Entidad Federativa:</label>
+                                        <select id="entidad-federativa" name="entidad-federativa">
+                                            <option value="Hidalgo" selected>Hidalgo</option>
+                                            <!-- Otras opciones pueden ser añadidas aquí -->
+                                        </select>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="fecha-solicitud-apoyo">Fecha de solicitud de Apoyo:</label>
+                                            <input type="date" id="fecha-solicitud-apoyo" name="fecha-solicitud-apoyo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fecha-resolucion-apoyo">Fecha de resolución de Apoyo:</label>
+                                            <input type="date" id="fecha-resolucion-apoyo" name="fecha-resolucion-apoyo">
+                                        </div>
+                            </div>
+                            <!-- Botón para enviar el formulario -->
+                            <button type="submit" class="submit-btn">Añadir Apoyo Médico</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Cada uno de estos divs representa el contenido de otras pestañas -->
+                    <div class="tab-content" id="externo">
+                        <!-- Contenido de la pestaña de Ayudas Externas con Presupuesto -->
+                        <h1>Sistema Infantil Teletón</h1>
+                        <h2>DIRECCION MEDICA</h2>
+                        <h3>Ayudas Externas con Presupuesto</h3>
+                        <!-- Formulario para Ayudas Externas con Presupuesto -->
+                    </div>
+                    <div class="tab-content" id="sin-presupuesto">
+                        <!-- Contenido de la pestaña de Ayudas Externas sin Presupuesto -->
+                        <h2>Ayudas Externas sin Presupuesto</h2>
+                        <!-- Formulario para Ayudas Externas sin Presupuesto -->
+                    </div>
+                    <div class="tab-content" id="anual">
+                        <!-- Contenido de la pestaña de Plan Anual -->
+                        <h2>Plan Anual</h2>
+                        <!-- Formulario para Plan Anual -->
+                    </div>
+                    <div class="tab-content" id="derivaciones">
+                        <!-- Contenido de la pestaña de Derivaciones -->
+                        <h2>Derivaciones</h2>
+                        <!-- Formulario para Derivaciones -->
+                    </div>
+                    <div class="tab-content" id="traslados">
+                        <!-- Contenido de la pestaña de Traslados -->
+                        <h2>Traslados</h2>
+                        <!-- Formulario para Traslados -->
+                    </div>
+                    <div class="tab-content" id="incidentes">
+                        <!-- Contenido de la pestaña de Incidentes Críticos -->
+                        <h2>Incidentes Críticos</h2>
+                        <!-- Formulario para Incidentes Críticos -->
+                    </div>
+                </div>
+                
+                <!-- **4. Contenedor de la Tabla -->
+                <div class="table-container">
+                    <!-- Barra de búsqueda -->
+                    <div class="search-bar">
+                        <!-- Campo de búsqueda -->
+                        <input type="text" id="search-field" placeholder="Buscar...">
+                        <!-- Botón para iniciar la búsqueda -->
+                        <button id="search-button" onclick="searchTable()">Buscar</button>
+                        <!-- Botón para limpiar los resultados de búsqueda -->
+                        <button id="clear-search-button" onclick="clearSearch()">Borrar Búsqueda</button>
+                        <!-- Filtros de búsqueda por fecha -->
+                        <label>
+                            <input type="checkbox" id="fecha-solicitud-filter"> Fecha de Solicitud
+                        </label>
+                        <label>
+                            <input type="checkbox" id="fecha-resolucion-filter"> Fecha de Resolución
+                        </label>
+                    </div>
+                    
+                    <!-- Tabla para mostrar los datos -->
+                    <table id="data-table">
+                        <thead>
+                            <!-- Encabezados de las columnas de la tabla -->
+                            <tr>
+                                <th>Número de Carnet</th>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                                <th>Sexo</th>
+                                <th>Entidad Federativa</th>
+                                <th>Fecha de Solicitud</th>
+                                <th>Fecha de Resolución</th>
+                                <th>Diagnóstico</th>
+                                <th>Edad del Paciente</th>
+                                <th>Descripción del Apoyo</th>
+                                <th>Monto del Apoyo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Las filas de datos se agregarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- **5. Scripts -->
+    <!-- Enlaza con jQuery para facilitar el manejo de eventos y la manipulación del DOM -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Enlaza con el archivo de scripts JavaScript para funcionalidades adicionales -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
