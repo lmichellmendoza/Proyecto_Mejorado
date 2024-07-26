@@ -1,7 +1,10 @@
+//CONEXION DEL BACK    
     const express = require("express");
-    const mysql2 = require("mysql2");
+    const mysql2 = require("mysql2"); //Libreria de mysql
     const path = require("path");
-    const conexion = require("./conexion");
+    const conexion = require("./conexion"); //Importamos el archivo de conexion 
+    const bcrypt = require('bcrypt'); //Libreria bcrypt
+
     
     const app = express();
     
@@ -19,15 +22,12 @@
     });
     
     //::::::::::::::::::::::::::::::::::::::::FUNCION DE LOGIN::::::::::::::::::::::::::::::::::::::::::::::::::::
-    app.post("/login", function(req, res) {
-        const datos = req.body;
-        let username = datos.username;
-        let password = datos.password;
+    app.post("/login", function(req, res) { // "/login" es el format del HTML
+        const datos = req.body;  //Obtiene todo lo del documento
+        let username = datos.username; //Que solo obtenga el dato de username
+        let password = datos.password; //Que solo obtenga el dato de password
     
-        /*if (!username || !password) {
-            res.status(400).send('Faltan datos');
-            return;
-        }*/
+
     
         let Login = "SELECT * FROM usuario WHERE username=? AND ContraseñaUsuario=?";
         conexion.query(Login, [username, password], (err, results) => {
@@ -38,16 +38,27 @@
             }
     
             if (results.length > 0) {
-                res.json({ success: true, message: 'Login exitoso' });
+                res.json({ success: true, message: 'Login exitoso' });  //Mensaje regresado al HTML
             } else {
-                res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
+                res.json({ success: false, message: 'Usuario o contraseña incorrectos' });  //Mensaje regresado al HTML
             }
         });
     });
 
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    //::::::::::::::::::::::::::::::::::::::::FUNCION DEL REGISTRO::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+ 
+
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+    //::::::::::::::::::::::::::::::::::::::::CONEXIÓN CON EL SERVIDOR::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     app.listen(3000, function() {
         console.log("servidor configurado correctamente: http://localhost:3000");
     });
     
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

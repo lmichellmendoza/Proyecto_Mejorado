@@ -194,7 +194,7 @@ input{
     overflow: hidden; /* Oculta el desbordamiento */
     width: 768px ; /* Ancho de 768px */
     max-width: 100%; /* Ancho máximo al 100% */
-    min-height: 600px; /* Altura mínima de 500px */
+    min-height: 700px; /* Altura mínima de 500px */ /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 }
 
 /* Estilos para el contenedor del formulario */
@@ -227,7 +227,7 @@ input{
 
 /* Estilos para el contenedor cuando está activo el panel derecho */
 .container.right-panel-active .register-container{
-    transform: translateX(100%); /* Transición al 100% en X */
+    transform: translateX(100%) translateY(-50px); /* Transición al 100% en X */
     opacity: 1; /* Opacidad 1 */
     z-index: 5; /* Índice z */
     animation: show 0.6s; /* Animación de mostrar */
@@ -383,3 +383,41 @@ input{
     color: #fff;
     padding: 15px 10px;
 }
+
+
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif; /* Fuente */
+}
+
+.dropdown-select {
+    width: 280px; 
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    -webkit-appearance: none; /* Estilo para eliminar el estilo por defecto en navegadores Webkit */
+    -moz-appearance: none; /* Estilo para eliminar el estilo por defecto en navegadores Firefox */
+    appearance: none; /* Estilo para eliminar el estilo por defecto en navegadores modernos */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="currentColor" stroke-width=".7" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+.dropdown-select:focus {
+    border-color: #b74bb0;
+    outline: none;
+}
+
