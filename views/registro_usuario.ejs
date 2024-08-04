@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Slider Login/ Registration Form</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/css/style_registro_usuario.css">
+
+</head>
+<body>
+    <div class="container" id="container">
+        <img src="public/images/logo_crit_png.png.png" alt="Logo" class="logo">
+        <div class="form-container register-container" id="Formulario-Registro">
+
+            <form action="/auth/register" method="POST">
+                
+                <h1><br>Registro</h1>
+                <input type="text" name="newuser" id="newuser" placeholder="Username">
+                <input type="text" name="Nombre" id="name" placeholder="Nombre Completo">
+                <input type="text" name="apellidoP" id="apellidoP" placeholder="Apellido Paterno">
+                <input type="text" name="apellidoM" id="apellidoM" placeholder="Apellido Materno">
+                <input type="email" name="newemail" id="newemail" placeholder="Correo Electronico ">
+                <input type="password" name="password1" id="password1" placeholder="Contraseña">
+                <input type="password" name="password2" id="password2" placeholder="Confirmar Contraseña">
+                <input type="tel" name="celular" id="celular" placeholder="Numero de celular">
+                
+                <div class="dropdown">
+                    <label for="options"></label>
+                    <select id="options" class="dropdown-select">
+                        <option value="1">Trabajo Social</option>
+                        <option value="2">Médico</option>
+                        <option value="3">Administrativas</option>
+                    </select>
+                </div>
+                <button type="submit">Guardar</button>
+                <ul class="error" id="error1"></ul>
+
+            </form>
+        </div>
+
+        
+
+    
+</div>
+    <script src="/public/js/registro_usuario.js"></script>
+</body>
+</html>

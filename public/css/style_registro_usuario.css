@@ -1,0 +1,152 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+/* Establece reglas generales para todos los elementos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el body */
+body {
+    display: flex; /* Establece el cuerpo como un contenedor flexible */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Altura del cuerpo igual a la ventana */
+    margin: 0; /* Elimina el margen por defecto */
+    background-color: #f6f5f7; /* Color de fondo */
+    font-family: "Poppins", sans-serif; /* Fuente */
+}
+
+/* Estilos para el contenedor */
+.container {
+    background-color: #fff; /* Color de fondo */
+    border-radius: 25px; /* Radio de borde */
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); /* Sombra */
+    position: relative; /* Posición relativa */
+    overflow: hidden; /* Oculta el desbordamiento */
+    width: 768px; /* Ancho de 768px */
+    max-width: 100%; /* Ancho máximo al 100% */
+    min-height: 700px; /* Altura mínima de 700px */
+    display: flex; /* Establece el contenedor como un contenedor flexible */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Estilos para el título h1 */
+h1 {
+    font-weight: 700; /* Grosor de la fuente */
+    letter-spacing: -1.5px; /* Espaciado entre letras */
+    margin-bottom: 15px; /* Margen inferior */
+}
+
+/* Estilos para los inputs */
+input {
+    background-color: #eee; /* Color de fondo */
+    border-radius: 10px; /* Radio de borde */
+    border: none; /* Sin borde */
+    padding: 12px 15px; /* Padding */
+    margin: 8px 0; /* Margen */
+    width: 100%; /* Ancho al 100% */
+}
+
+/* Estilos para el botón */
+button {
+    position: relative; /* Posición relativa */
+    border-radius: 20px; /* Radio de borde */
+    border: 1px solid #b74bb0; /* Borde de 1px sólido */
+    background-color: #b74bb0; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    font-size: 15px; /* Tamaño de la fuente */
+    font-weight: 700; /* Grosor de la fuente */
+    margin: 10px; /* Margen */
+    padding: 12px 80px; /* Padding */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: capitalize; /* Transforma texto a mayúsculas */
+    transition: 0.3s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para botones al pasar el mouse */
+button:hover {
+    letter-spacing: 3px; /* Espaciado entre letras al pasar el mouse */
+}
+
+/* Estilos para botones al hacer clic */
+button:active {
+    transform: scale(0.95); /* Escala al hacer clic */
+}
+
+/* Estilos para el formulario */
+form {
+    background-color: #fff; /* Color de fondo */
+    display: flex; /* Establece el formulario como un contenedor flexible */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column; /* Dirección de los elementos hijos */
+    padding: 0 50px; /* Padding */
+    height: 100%; /* Altura al 100% */
+    text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para el contenedor del checkbox */
+.content .checkbox {
+    display: flex; /* Establece el checkbox como un contenedor flexible */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    width: 400px;
+    margin: 40px;
+}
+
+/* Estilos para el contenedor del dropdown */
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif; /* Fuente */
+}
+
+.dropdown-select {
+    width: 280px; 
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    -webkit-appearance: none; /* Estilo para eliminar el estilo por defecto en navegadores Webkit */
+    -moz-appearance: none; /* Estilo para eliminar el estilo por defecto en navegadores Firefox */
+    appearance: none; /* Estilo para eliminar el estilo por defecto en navegadores modernos */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="currentColor" stroke-width=".7" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+.dropdown-select:focus {
+    border-color: #b74bb0;
+    outline: none;
+}
+
+.container .error {
+    display: none;
+    margin-top: 20px;
+    border-radius: 3px;
+    background: #ce1818;
+    color: #fff;
+    padding: 15px 10px;
+}
+/* Estilos para el logo */
+.logo {
+    position: absolute; /* Posición absoluta */
+    top: 20px; /* Espacio desde la parte superior */
+    left: 20px; /* Espacio desde la parte izquierda */
+    width: 100px; /* Ancho del logo */
+    height: auto; /* Mantiene la relación de aspecto */
+}
