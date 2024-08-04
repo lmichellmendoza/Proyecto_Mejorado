@@ -64,7 +64,7 @@
         }
         #boton_fecha { top: 60px; left: 690px; }
         #boton_pdf { top: 540px; left: 733px; width: 180px; height: 60px; }
-        #medicos_combobox { top: 470px; left: 400px; width: 200px; height: 30px; }
+        #doctor_menu { top: 500px; left: 350px; width: 300px;height: 20px; }
     </style>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
@@ -78,6 +78,7 @@
         <input type="text" id="diag_paciente" class="input-field">
         <input type="text" id="fec_nac_paciente" class="input-field">
         <input type="text" id="domicilio_paciente" class="input-field">
+        <select id="doctor_menu" class="input-field"></select>
         <input type="text" id="nombre_medico" class="input-field">
         <input type="text" id="cedula_medico" class="input-field">
         <input type="text" id="especialidad_medico" class="input-field">
@@ -86,7 +87,6 @@
         <div id="fecha"></div>
         <button id="boton_fecha" class="button">Fecha</button>
         <button id="boton_pdf" class="button">Generar PDF</button>
-        <select id="medicos_combobox" class="input-field"></select>
         <div id="calendar"></div>
     </div>
 
@@ -96,39 +96,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         $(document).ready(function() {
-            var medicos_info = {
-                'Dr. Jan': {
-                    'nombre': 'Dr. Jan',
-                    'cedula': '123456',
-                    'especialidad': 'Cardiología',
-                    'egresado': 'UNAM'
+            var doctores = [
+                {
+                    nombre: "Dr. Juan Pérez",
+                    cedula: "123456",
+                    especialidad: "Cardiología",
+                    egresado: "UNAM"
                 },
-                'Dr. Federico': {
-                    'nombre': 'Dr. Federico',
-                    'cedula': '654321',
-                    'especialidad': 'Neurología',
-                    'egresado': 'IPN'
+                {
+                    nombre: "Dr. Ana Garcia",
+                    cedula: "789101",
+                    especialidad: "Pediatria",
+                    egresado: "IPN"
                 },
-                'Dr. Diana': {
-                    'nombre': 'Dr. Diana',
-                    'cedula': '112233',
-                    'especialidad': 'Pediatría',
-                    'egresado': 'UAM'
+                {
+                    nombre: "Dr. Luis Martínez",
+                    cedula: "112131",
+                    especialidad: "Dermatología",
+                    egresado: "UAM"
                 }
-            };
+            ];
 
-            $.each(medicos_info, function(key, value) {
-                $('#medicos_combobox').append('<option value="' + key + '">' + key + '</option>');
+            doctores.forEach(function(doctor) {
+                $('#doctor_menu').append(new Option(doctor.nombre, doctor.nombre));
             });
 
-            $('#medicos_combobox').on('change', function() {
-                var selectedMedico = $(this).val();
-                if (medicos_info[selectedMedico]) {
-                    var info = medicos_info[selectedMedico];
-                    $('#nombre_medico').val(info.nombre);
-                    $('#cedula_medico').val(info.cedula);
-                    $('#especialidad_medico').val(info.especialidad);
-                    $('#egresado_medico').val(info.egresado);
+            $('#doctor_menu').on('change', function() {
+                var selectedDoctor = doctores.find(doc => doc.nombre === this.value);
+                if (selectedDoctor) {
+                    $('#nombre_medico').val(selectedDoctor.nombre);
+                    $('#cedula_medico').val(selectedDoctor.cedula);
+                    $('#especialidad_medico').val(selectedDoctor.especialidad);
+                    $('#egresado_medico').val(selectedDoctor.egresado);
+                } else {
+                    $('#nombre_medico').val('');
+                    $('#cedula_medico').val('');
+                    $('#especialidad_medico').val('');
+                    $('#egresado_medico').val('');
                 }
             });
 
@@ -137,7 +141,7 @@
             });
 
             $('#calendar').datepicker({
-                dateFormat: 'dd/mm/yy',
+                dateFormat: 'dd   /   mm   / yy',
                 onSelect: function(dateText) {
                     $('#fecha').text(dateText);
                     $('#calendar').hide();
@@ -164,21 +168,11 @@
                     return;
                 }
 
-                var informacion_total = `
-                    ${fecha_seleccionada}
-                    ${nombre_paciente} ${expediente_paciente}
-                    ${edad_paciente} ${peso_paciente} ${diag_paciente}
-                    ${fec_nac_paciente} ${domicilio_paciente}
-                    ${especificaciones}
-                    ${nombre_medico}
-                    ${cedula}
-                    ${especialidad}
-                    ${egresado}
-                `;
+                var qrText = `${fecha_seleccionada}\n${nombre_paciente} ${expediente_paciente}\n${edad_paciente} ${peso_paciente} ${diag_paciente}\n${fec_nac_paciente} ${domicilio_paciente}\n${especificaciones}\n${nombre_medico}\n${cedula}\n${especialidad}     ${egresado}`;
 
                 var qrContainer = document.createElement('div');
                 var qrcode = new QRCode(qrContainer, {
-                    text: informacion_total,
+                    text: qrText,
                     width: 100,
                     height: 100,
                 });
@@ -192,8 +186,8 @@
                     img.src = 'Receta.png';
 
                     img.onload = function() {
-                        var imgWidth = 210; // A4 width in mm
-                        var imgHeight = (imgWidth * 600) / 1000; // Proporción 1000:600
+                        var imgWidth = 210; 
+                        var imgHeight = (imgWidth * 600) / 1000; 
 
                         doc.addImage(img, 'PNG', 0, 0, imgWidth, imgHeight);
                         doc.setFontSize(10);
@@ -211,11 +205,10 @@
                         doc.text(especialidad, 33, 111); 
                         doc.text(egresado, 33, 114); 
 
-                        var qrX = (imgWidth - 20) / 2; // Ajuste según tamaño del QR y la imagen
-                        var qrY = imgHeight / 2 + 135; // Ajuste según la altura deseada
-                        doc.addImage(qrImg, 'PNG', qrX, qrY, 70, 70); // Cambia el tamaño del QR aquí
+                        var qrX = (imgWidth - 20) / 2; 
+                        var qrY = imgHeight / 2 + 135; 
+                        doc.addImage(qrImg, 'PNG', qrX, qrY, 70, 70); 
 
-                        // Nombre del archivo
                         var nombreArchivo = `${nombre_paciente}_${expediente_paciente}.pdf`;
                         doc.save(nombreArchivo);
                     };
