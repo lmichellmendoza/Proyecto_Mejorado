@@ -34,6 +34,15 @@ body {
     align-items: center; /* Centra verticalmente */
 }
 
+/* Estilos para el logo */
+.logo {
+    position: absolute; /* Posición absoluta */
+    top: 20px; /* Espacio desde la parte superior */
+    left: 20px; /* Espacio desde la parte izquierda */
+    width: 100px; /* Ancho del logo */
+    height: auto; /* Mantiene la relación de aspecto */
+}
+
 /* Estilos para el título h1 */
 h1 {
     font-weight: 700; /* Grosor de la fuente */
@@ -65,6 +74,7 @@ button {
     letter-spacing: 1px; /* Espaciado entre letras */
     text-transform: capitalize; /* Transforma texto a mayúsculas */
     transition: 0.3s ease-in-out; /* Transición suave */
+    cursor: pointer; /* Cursor de puntero */
 }
 
 /* Estilos para botones al pasar el mouse */
@@ -87,15 +97,16 @@ form {
     padding: 0 50px; /* Padding */
     height: 100%; /* Altura al 100% */
     text-align: center; /* Alineación del texto */
+    overflow: hidden; /* Oculta el desbordamiento */
 }
 
-/* Estilos para el contenedor del checkbox */
-.content .checkbox {
-    display: flex; /* Establece el checkbox como un contenedor flexible */
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
-    width: 400px;
-    margin: 40px;
+/* Estilos para los mensajes de error */
+.error {
+    color: #b74bb0; /* Color del texto de error */
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-top: 10px; /* Margen superior */
+    padding: 0 10px; /* Padding */
+    list-style-type: none; /* Sin viñetas */
 }
 
 /* Estilos para el contenedor del dropdown */
@@ -133,6 +144,7 @@ label {
     border-color: #b74bb0;
     outline: none;
 }
+
 
 .container .error {
     display: none;
