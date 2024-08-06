@@ -1,0 +1,215 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3e5f5; /* Morado claro */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff; /* Blanco para el encabezado */
+    padding: 15px 30px;
+    border-bottom: 3px solid #ffeb3b; /* Amarillo brillante */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.header-title {
+    margin-left: 20px;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #ffeb3b; /* Amarillo brillante para el texto */
+    text-shadow: 3px 3px 6px #4a148c, 0 0 25px #4a148c, 0 0 5px #4a148c; /* Sombra morada */
+}
+.logo {
+    height: 150px;
+    margin-right: 20px;
+    animation: scaleUpDown 1s ease-in-out infinite;
+}
+
+@keyframes scaleUpDown {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.main-content {
+    display: flex;
+    margin-left: 250px;
+    transition: margin-left 0.5s;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    left: -250px; /* Inicialmente fuera de vista */
+    top: 0;
+    background-color: #9c27b0; /* Morado */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.sidebar.show {
+    left: 0; /* Mueve el menú a la vista */
+}
+
+.profile-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+#user-name {
+    color: #fff;
+    font-size: 18px;
+    margin: 0;
+}
+
+.sidebar .tab-button {
+    display: block;
+    padding: 15px 20px;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    width: 100%;
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.sidebar .tab-button:hover {
+    background-color: #ab47bc; /* Morado claro al pasar el ratón */
+    color: #000; /* Color del texto al pasar el ratón */
+}
+
+.sidebar .close-btn {
+    font-size: 36px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.sidebar .close-btn:hover {
+    color: #ab47bc; /* Morado claro al pasar el ratón */
+}
+
+.open-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #9c27b0; /* Morado para el botón */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transition: background-color 0.3s;
+}
+
+.open-btn:hover {
+    background-color: #ab47bc; /* Morado claro al pasar el ratón */
+}
+
+/* Estilos para el contenido de secciones */
+.content-section {
+    display: none; /* Ocultar por defecto todas las secciones */
+    padding: 20px;
+    background-color: #fff; /* Blanco para el fondo de las secciones */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.content-section h2 {
+    color: #4a148c; /* Morado oscuro para los encabezados */
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.agenda-container {
+    /* Estilos específicos para la agenda */
+}
+
+/* Estilos para botones activos */
+.tab-button.active {
+    background-color: #ffeb3b; /* Amarillo brillante al hacer clic */
+    color: #000; /* Color del texto al hacer clic */
+    font-weight: bold;
+}
+
+/* Estilos para el formulario de citas */
+#add-cita-form {
+    margin-bottom: 20px;
+}
+
+#add-cita-form label {
+    display: block;
+    margin: 5px 0;
+}
+
+#add-cita-form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#add-cita-form button {
+    background-color: #9c27b0; /* Morado para el botón */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#add-cita-form button:hover {
+    background-color: #ab47bc; /* Morado claro al pasar el ratón */
+}
+
+/* Estilos para el botón de eliminar */
+.delete-btn {
+    background-color: #e53935; /* Rojo para el botón de eliminar */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c62828; /* Rojo oscuro al pasar el ratón */
+}

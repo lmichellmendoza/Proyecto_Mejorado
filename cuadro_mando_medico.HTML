@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadro de Mando Hospitalario</title>
+    <link rel="stylesheet" href="CSS/STYLES.CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <!-- Agregar CSS para el calendario (opcional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="images/logo-CRIT-Hidalgo-removebg-preview1.png" alt="Logo CRIT Hidalgo" class="logo">
+            </div>
+            <div class="header-title">
+                <h1>Panel de Control Médico</h1>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <nav id="sidebar" class="sidebar">
+                <button class="close-btn" style="border: none; background: none;">&times;</button>
+                <div class="profile-container">
+                    <img id="profile-picture" src="images/Profile-Avatar-PNG.png" alt="Profile Picture" class="profile-picture">
+                    <p id="user-name">Nombre del Usuario</p>
+                </div>
+                <div class="dropdown-content">
+                    <button class="tab-button" data-tab="personal"><i class="fa fa-user"></i> Datos Personales</button>
+                    <button class="tab-button" data-tab="receta"><i class="fa fa-receipt"></i> Receta Médica</button>
+                    <button class="tab-button" data-tab="citas"><i class="fa fa-calendar-check"></i> Citas Médicas y Agenda</button>
+                    <button class="tab-button" data-tab="plan-tratamiento"><i class="fa fa-clipboard-list"></i> Plan de Tratamiento</button>
+                </div>
+            </nav>
+
+            <div class="content">
+                <button id="open-sidebar" class="open-btn"><i class="fa fa-bars"></i> Menu</button>
+                <div id="content-sections">
+                    <!-- Sección de Citas Médicas y Agenda -->
+                    <div id="citas-seccion" class="content-section">
+                        <h2>Citas Médicas y Agenda</h2>
+                        <div class="agenda-container">
+                            <!-- Formulario para agregar citas -->
+                            <form id="add-cita-form">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" id="fecha" name="fecha" required>
+                                <label for="hora">Hora:</label>
+                                <input type="time" id="hora" name="hora" required>
+                                <label for="paciente">Paciente:</label>
+                                <input type="text" id="paciente" name="paciente" required>
+                                <label for="descripcion">Descripción:</label>
+                                <input type="text" id="descripcion" name="descripcion" required>
+                                <button type="submit">Agregar Cita</button>
+                            </form>
+
+                            <!-- Tabla de Citas Médicas -->
+                            <table id="agenda-table" class="agenda-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Paciente</th>
+                                        <th>Descripción</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Las citas se agregarán aquí dinámicamente -->
+                                </tbody>
+                            </table>
+
+                            <!-- Calendario -->
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                    <!-- Otras secciones pueden ir aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <!-- Agregar JS para el calendario (opcional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.js"></script>
+</body>
+</html>
