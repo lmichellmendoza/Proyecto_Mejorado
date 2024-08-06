@@ -17,6 +17,9 @@
     // Ruta para servir archivos estáticos
     app.use('/public', express.static(path.join(__dirname, 'public')));
     //
+
+//************************** PANTALLA DE INDEX_ROLES ****************************
+//Botones Funcionando   
     app.get("/", function(req, res) {
         res.render("index_Roles");
     });
@@ -39,7 +42,8 @@
     app.get("/registro_nuevo",function(req,res){
         res.render("registro_usuario");
     })
-    //::::::::::::::::::::::::::::::::::::::::FUNCION DE LOGIN DIRECTOR::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+//::::::::::::::::::::::::::::::::::::::::FUNCION DE LOGIN DIRECTOR::::::::::::::::::::::::::::::::::::::::::::::::::::
     app.post("/login_director", function(req, res) { // "/login" es el format del HTML
         const datos_d = req.body;  //Obtiene todo lo del documento
         let username_d = datos_d.username; //Que solo obtenga el dato de username
@@ -72,7 +76,13 @@ conexion.query(Login, [username_d], (err, results) => {
 });
     });
 
-    //::::::::::::::::::::::::::::::::::::::::FUNCION DE LOGIN MEDICO::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    //Recuperacion del boton de inicio de sesión cuando coinciden los valores
+    app.get("/cuadro_mando_director",function(req,res){
+        res.render("cuadro_mando_director");
+    })
+
+//::::::::::::::::::::::::::::::::::::::::FUNCION DE LOGIN MEDICO::::::::::::::::::::::::::::::::::::::::::::::::::::
     app.post("/login_medico", function(req, res) { // "/login" es el format del HTML
         const datos_m = req.body;  //Obtiene todo lo del documento
         let username_m = datos_m.username; //Que solo obtenga el dato de username
@@ -104,6 +114,11 @@ conexion.query(Login, [username_m], (err, results) => {
     }
 });
     });
+
+        //Recuperacion del boton de inicio de sesión cuando coinciden los valores
+        app.get("/cuadro_mando_medico",function(req,res){
+            res.render("cuadro_mando_medico");
+        })
 
 
 //::::::::::::::::::::::::::::::::::::::::FUNCION DE LOGIN TRABAJO SOCIAL::::::::::::::::::::::::::::::::::::::::::::::::::::

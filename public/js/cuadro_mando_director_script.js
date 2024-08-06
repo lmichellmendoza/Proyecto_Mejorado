@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resolve({
                     id: userID,
                     name: 'Juan Pérez',
-                    profilePicture: 'images/Profile-Avatar-PNG.png'
+                    profilePicture: 'public/images/Profile-Avatar-PNG.png'
                 });
             }, 1000);
         });

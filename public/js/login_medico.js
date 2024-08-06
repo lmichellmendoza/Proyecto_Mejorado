@@ -53,7 +53,7 @@ formulario.addEventListener('submit', function(e) {
             if (result.success) {
                 // Redirigir a otra página o realizar alguna acción en caso de login exitoso
                 //window.location.href = '/menu'; // Ejemplo de redirección
-                window.location.href = '/menu';
+                window.location.href = '/cuadro_mando_medico';
             } else {
                 error.style.display = 'block';
                 error.innerHTML += `<li>${result.message}</li>`;
