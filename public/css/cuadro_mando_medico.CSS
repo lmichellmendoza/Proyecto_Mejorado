@@ -159,7 +159,7 @@ header {
 }
 
 .agenda-container {
-    /* Estilos específicos para la agenda */
+    margin-top: 20px; /* Estilos específicos para la agenda */
 }
 
 /* Estilos para botones activos */
@@ -212,3 +212,5 @@ header {
 .delete-btn:hover {
     background-color: #d32f2f;
 }
+
+/*RECETA MÉDICA*/
