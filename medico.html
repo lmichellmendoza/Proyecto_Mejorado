@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Médicos</title>
+    <link rel="stylesheet" href="medico.css">
+</head>
+<body>
+    <img src="hidalgo.png" alt="Hidalgo" class="hidalgo">
+    <div class="container">
+        <h1>Registro de Médicos</h1>
+        <form id="medicoForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula" required>
+
+            <label for="especialidad">Especialidad:</label>
+            <input type="text" id="especialidad" name="especialidad" required>
+
+            <button type="button" onclick="guardarMedico()">Guardar</button>
+            <button type="button" onclick="modificarMedico()">Modificar</button>
+            <button type="button" onclick="eliminarMedico()">Eliminar</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Especialidad</th>
+            </tr>
+        </thead>
+        <tbody id="medicoTableBody">
+            <!-- Aquí se añadirán los médicos -->
+        </tbody>
+    </table>
+    <script src="medico.js"></script>
+</body>
+</html>

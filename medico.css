@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, yellow, purple, white);
+    color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    position: relative;
+}
+
+.hidalgo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 150px; /* Ajusta el tamaño de la imagen */
+    animation: movimiento 5s infinite;
+}
+
+@keyframes movimiento {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    text-align: left;
+}
+
+input {
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkgoldenrod;
+}
+
+table {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-collapse: collapse;
+    color: yellow;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid yellow;
+    text-align: center;
+}
+
+th {
+    background-color: darkgoldenrod;
+}
