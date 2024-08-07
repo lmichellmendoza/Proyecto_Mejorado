@@ -132,23 +132,4 @@ $(document).ready(function() {
             allDay: false
         }));
     }
-
-     // Lógica para el botón de seleccionar fecha
-     $("#boton_fecha").on("click", function() {
-        $("#calendar").toggle();
-    });
-
-    // Lógica para el botón de generar PDF
-    $("#boton_pdf").on("click", function() {
-        // Lógica para generar PDF aquí
-    });
-
-    // Inicializar el calendario (opcional)
-    if ($("#calendar").length) {
-        $("#calendar").fullCalendar();
-    }
 });
-
-
-//Cuadro de Receta Médica::::::::::::::::::::::::::::::::::::::::::
-

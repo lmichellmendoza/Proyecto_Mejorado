@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuadro de Mando Hospitalario</title>
-    <link rel="stylesheet" href="public/css/cuadro_mando_medico.CSS">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <!-- Agregar CSS para el calendario (opcional) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.css" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Incluye jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Incluye FullCalendar CSS -->
+<link href="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.css" rel="stylesheet">
+<link href="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.css" rel="stylesheet">
+<!-- Incluye FullCalendar JS -->
+<script src="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.js"></script>
+<script src="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.js"></script>
     <link rel="shorcut icon" type="image/x-icon" href="public/images/favicon.ico"> <!--Para el icono de la pagina web-->
+    <link rel="stylesheet" href="public/css/cuadro_mando_medico.css">
 </head>
 <body>
     <div class="container">
@@ -77,44 +81,42 @@
                             <div id="calendar"></div>
                         </div>
                     </div>
-                    <!-- Otras secciones pueden ir aquí ***************************************-->
-                    <!-- Sección de Receta Médica ***********-->
+                    <!-- Otras secciones pueden ir aquí -->
                     <div id="receta-seccion" class="content-section">
                         <h2>Receta Médica</h2>
                         <div class="receta-container">
-                            <div class="container">
-                                <input type="text" id="nombre_paciente" class="input-field">
-                                <input type="text" id="expediente_paciente" class="input-field">
-                                <input type="text" id="edad_paciente" class="input-field">
-                                <input type="text" id="peso_paciente" class="input-field">
-                                <input type="text" id="diag_paciente" class="input-field">
-                                <input type="text" id="fec_nac_paciente" class="input-field">
-                                <input type="text" id="domicilio_paciente" class="input-field">
-                                <select id="doctor_menu" class="input-field"></select>
-                                <input type="text" id="nombre_medico" class="input-field">
-                                <input type="text" id="cedula_medico" class="input-field">
-                                <input type="text" id="especialidad_medico" class="input-field">
-                                <input type="text" id="egresado_medico" class="input-field">
-                                <textarea id="especificaciones" class="text-area"></textarea>
-                                <div id="fecha"></div>
-                                <button id="boton_fecha" class="button">Fecha</button>
-                                <button id="boton_pdf" class="button">Generar PDF</button>
-                                <div id="calendar"></div>
-                            </div>
-                    </div>
+                            <div class="container">  
+                                <input type="text" id="r_nombre_paciente" class="Entradas">
+                                <input type="text" id="r_numero_expediente_paciente" class="Entradas">
+                                <input type="text" id="r_edad_paciente" class="Entradas">
+                                <input type="text" id="r_peso_paciente" class="Entradas">
+                                <input type="text" id="r_diagnostico_paciente" class="Entradas">
+                                <input type="text" id="r_nacimiento_paciente" class="Entradas">
+                                <input type="text" id="r_domicilio_paciente" class="Entradas">
+                                <select id="r_menu_doctor" class="Entradas"></select>
+                                <input type="text" id="r_nombre_medico" class="Entradas">
+                                <input type="text" id="r_cedula_medico" class="Entradas">
+                                <input type="text" id="r_especialidad_medico" class="Entradas">
+                                <input type="text" id="r_egresado_medico" class="Entradas">
+                                <textarea id="r_especificaciones" class="r_especificaciones"></textarea>
 
-                    
+                                <div id="r_fecha"> </div>
+                                <button id="r_boton_fecha" class="tab-button"> Fecha </button>
+                                <button id="r_boton_pdf" class="tab-button"> Generar PDF </button>
+                                <div id="r_calendar"></div>
+                            </div>      
+                        </div>    
+                    </div>        
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/core@5.10.1/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.js"></script>
     <script src="public/js/cuadro_mando_medico.js"></script>
-    <!-- Agregar JS para el calendario (opcional) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.js"></script>
+    
+
 </body>
 </html>
