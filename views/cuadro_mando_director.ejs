@@ -33,6 +33,12 @@
                     <button class="tab-button" data-tab="receta"><i class="fa fa-receipt"></i> Receta Médica</button>
                     <button class="tab-button" data-tab="citas"><i class="fa fa-calendar-check"></i> Citas Médicas y Agenda</button>
                     <button class="tab-button" data-tab="plan-tratamiento"><i class="fa fa-clipboard-list"></i> Plan de Tratamiento</button>
+                    <button class="tab-button" data-tab="registro-pacientes"><i class="fa fa-user-plus"></i> Registrar Pacientes</button>
+                    <button class="tab-button" data-tab="registro-medico"><i class="fa fa-user-md"></i> Registrar Médicos</button>
+                    <button class="tab-button" data-tab="registro-ts"><i class="fa fa-hands-helping"></i> Registrar Trabajo Social</button>
+                    <button class="tab-button" data-tab="solicitudes-sistem"><i class="fa fa-envelope"></i> Solicitudes del Sistema</button>
+                    <button class="tab-button" data-tab="validac"><i class="fa fa-check"></i> Validaciones</button>
+                    <button class="tab-button" data-tab="cierre-sesion"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</button>
                 </div>
             </nav>
 
@@ -76,8 +82,88 @@
                             <div id="calendar"></div>
                         </div>
                     </div>
+                    <!--Registro Médicos ----------------------------------->
+                    <div id="registro-medico-seccion" class="content-section">
+                        <h2>Registro de Médicos</h2>
+                        <div class="registro_medico-container">
+                            <form id="medicoForm" class="formulario_medico">
+                                <label for="nombre">Nombre:</label>
+                                <input class="input_formm" type="text" id="nombre" name="nombre" required>
+
+                                <label for="ap_medico">Apellido Paterno:</label>
+                                <input class="input_formm" type="text" id="ap_medico" name="ap_medico" required>
+
+                                <label for="am_medico">Apellido Materno:</label>
+                                <input class="input_formm" type="text" id="am_medico" name="am_medico" required>
+
+                                <label for="cedula">Cédula:</label>
+                                <input class="input_formm" type="text" id="cedula" name="cedula" required>
+
+                                <label for="especialidad">Especialidad:</label>
+                                <input class="input_formm" type="text" id="especialidad" name="especialidad" required>
+
+                                <button type="button" class="rm_boton" clonclick="guardarMedico()">Guardar</button>
+                                <button type="button" class="rm_boton" onclick="modificarMedico()">Modificar</button>
+                                <button type="button" class="rm_boton" onclick="eliminarMedico()">Eliminar</button>
+                            </form>
+                        </div>
+                        
+                        <table id="rm_tabla" class="rm_tabla">
+                            <thead class="rm_t_tabla">
+                                <th class="rm_t_tabla">Cédula Profesional</th>
+                                <th class="rm_t_tabla">Nombre</th>
+                                <th class="rm_t_tabla">Especialidad</th>
+                                <th class="rm_t_tabla">Egresado</th>
+                            </thead>
+                            <tbody id="t_medicos_registro">
+                                    <!-- Van los medicos-->
+                            </tbody>
+                        </table>
+
+                    </div>    
+                    <!-- Registro Pacientes--------------------------->
+
+                    <div id="registro-pacientes-seccion" class="content-section">
+                        <h2>Registro Pacientes</h2>
+                        <div class="registro_pacientes-container">
+                            <form id="pacientesForm" class="formulario_pacientes">
+                                <label for="rp_numero_expediente">Número de Expediente:</label>
+                                <input class="input_formm" type="text" id="rp_numero_expediente" name="rp_numero_expediente" required>
+                
+                                <label for="rp_nombre">Nombre:</label>
+                                <input class="input_formm" type="text" id="rp_nombre" name="rp_nombre" required>
+                
+                                <label for="rap_paciente">Apellido Paterno:</label>
+                                <input class="input_formm" type="text" id="rap_paciente" name="rap_paciente" required>
+                
+                                <label for="ram_paciente">Apellido Materno:</label>
+                                <input class="input_formm" type="text" id="ram_paciente" name="ram_paciente" required>
+                
+                                <label for="rp_fechaNacimiento">Fecha de Nacimiento:</label>
+                                <input class="input_formm" type="date" id="rp_fechaNacimiento" name="rp_fechaNacimiento" required>
+                
+                                <button type="button" class="rm_boton" onclick="guardarPaciente()">Guardar</button>
+                                <button type="button" class="rm_boton" onclick="modificarPaciente()">Modificar</button>
+                                <button type="button" class="rm_boton" onclick="eliminarPaciente()">Eliminar</button>
+                            </form>
+                        </div>
+                        
+                        <table id="rp_tabla" class="rm_tabla">
+                            <thead class="rm_t_tabla">
+                                <tr>
+                                    <th class="rm_t_tabla">Número de Expediente</th>
+                                    <th class="rm_t_tabla">Nombre</th>
+                                    <th class="rm_t_tabla">Apellido Paterno</th>
+                                    <th class="rm_t_tabla">Apellido Materno</th>
+                                    <th class="rm_t_tabla">Fecha de Nacimiento</th>
+                                </tr>
+                            </thead>
+                            <tbody id="t_pacientes_registro">
+                                <!-- Los pacientes se agregarán aquí dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- Otras secciones pueden ir aquí -->
-                     
                 </div>
             </div>
         </div>
