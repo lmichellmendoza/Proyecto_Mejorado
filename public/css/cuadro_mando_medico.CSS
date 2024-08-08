@@ -261,18 +261,32 @@ header {
 }
 
 
-#r_boton_fecha { top: 60px; left: 1200px; }
-#r_boton_pdf { top: 850px; left: 733px; width: 180px; height: 60px; }
+#r_boton_fecha { top: 370px; left: 1150px; }
+#r_boton_pdf { top: 850px; left: 1200px; width: 180px; height: 60px; }
 #r_menu_doctor { top: 820px; left: 750px; width: 300px;height: 20px; }
 
 
 
-.tap-button-receta{
-    text-align: center;
+#r_boton_fecha{
     background:  #FFC107;
-    border: none;
     color: #fff;
     font-size: 18px;
     border-radius: 5px; /* Bordes redondeados */
+    position: absolute;
+    padding: 7px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-color: white;
+}
+#r_boton_pdf{
+    background:  #FFC107;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px; /* Bordes redondeados */
+    border-color: white;
+    position: absolute;
+    padding: 7px 10px;
+    font-size: 14px;
+    cursor: pointer;
 }
 

@@ -277,6 +277,41 @@ app.post("/detalles-medico", function(req, res) {
 });
 
 
+//*************************************************** */
+// Ruta de cierre de sesión
+app.post('/logout', (req, res) => {
+    // Cierra la sesión en la base de datos si es necesario
+    // Suponiendo que tienes una función logoutUser que maneja esto
+    logoutUser(req.session.userId)
+        .then(() => {
+            req.session.destroy(err => {
+                if (err) {
+                    return res.status(500).send('Error al cerrar sesión');
+                }
+                res.status(200).send('Sesión cerrada exitosamente');
+            });
+        })
+        .catch(err => {
+            res.status(500).send('Error al cerrar sesión en la base de datos');
+        });
+});
+
+// Función para cerrar la sesión del usuario en la base de datos
+function logoutUser(userId) {
+    return new Promise((resolve, reject) => {
+        // Aquí puedes implementar la lógica para cerrar la sesión en tu base de datos
+        // Ejemplo para una base de datos SQL
+        const query = 'UPDATE usuario SET idStatus = 0 WHERE id = ?';
+        db.query(query, [userId], (err, result) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve();
+        });
+    });
+}
+
+
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

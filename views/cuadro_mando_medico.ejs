@@ -14,6 +14,19 @@
 <script src="https://unpkg.com/@fullcalendar/daygrid@5.10.1/main.min.js"></script>
     <link rel="shorcut icon" type="image/x-icon" href="public/images/favicon.ico"> <!--Para el icono de la pagina web-->
     <link rel="stylesheet" href="public/css/cuadro_mando_medico.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- QRCode.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -38,6 +51,7 @@
                     <button class="tab-button" data-tab="receta"><i class="fa fa-receipt"></i> Receta Médica</button>
                     <button class="tab-button" data-tab="citas"><i class="fa fa-calendar-check"></i> Citas Médicas y Agenda</button>
                     <button class="tab-button" data-tab="plan-tratamiento"><i class="fa fa-clipboard-list"></i> Plan de Tratamiento</button>
+                    <button class="tab-button" id="logout-button"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</button>
                 </div>
             </nav>
 
@@ -101,12 +115,21 @@
                                 <textarea id="r_especificaciones" class="r_especificaciones"></textarea>
 
                                 <div id="r_fecha"> </div>
-                                <button id="r_boton_fecha" class="tab-button-receta"> Fecha </button>
-                                <button id="r_boton_pdf" class="button-receta"> Generar PDF </button>
+                                <button id="r_boton_fecha" class="tab-button"> Fecha </button>
+                                <button id="r_boton_pdf" class="tab-button"> Generar PDF </button>
                                 <div id="r_calendar"></div>
                             </div>      
                         </div>    
-                    </div>        
+                    </div>  
+                    
+                    <!-- Otra seccion-->
+                    <div id="receta-seccion" class="content-section">
+
+                    </div>
+
+
+
+                    <!-- Otra seccion-->    
                 </div>
             </div>
         </div>
