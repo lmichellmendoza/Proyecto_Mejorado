@@ -194,6 +194,96 @@ conexion.query(Login, [username_ts], (err, results) => {
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+    //::::::::::::::::::::::::::::::::::::::::FUNCION DE LA RECETA MEDICA::::::::::::::::::::::::::::::::::::::::::::::::::::
+    // Para obtener los valores de los medicos
+// Ruta para obtener todos los médicos
+/*app.post("/receta-container", function(req, res) {
+    let query = `SELECT 
+                    m.Nombre_Medico, 
+                    m.Apellido_Paterno_Medico, 
+                    m.Apellido_Materno_Medico, 
+                    m.Cedula_Profesional_Medico, 
+                    m.Escuela_Egresado_Medico, 
+                    e.Nombre_Especialidad_Medica 
+                FROM 
+                    medico m
+                JOIN
+                    especialidad_medica e ON m.idEspecialidad_Medica = e.idEspecialidad_Medica`;
+
+    conexion.query(query, (err, results) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).send('Error en el servidor');
+            return;
+        }
+        res.json(results);
+    });
+});
+*/
+
+// Obtener todos los médicos
+app.post("/receta-container", function(req, res) {
+    let query = `SELECT 
+                    m.Nombre_Medico, 
+                    m.Apellido_Paterno_Medico, 
+                    m.Apellido_Materno_Medico, 
+                    m.Cedula_Profesional_Medico, 
+                    m.Escuela_Egresado_Medico, 
+                    e.Nombre_Especialidad_Medica 
+                FROM 
+                    medico m
+                JOIN
+                    especialidad_medica e ON m.idEspecialidad_Medica = e.idEspecialidad_Medica`;
+
+    conexion.query(query, (err, results) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).send('Error en el servidor');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+// Obtener detalles del médico basado en el nombre completo
+app.post("/detalles-medico", function(req, res) {
+    let nombreCompleto = req.body.nombreCompleto;
+    let [nombre, apellidoPaterno, apellidoMaterno] = nombreCompleto.split(' ');
+
+    let query = `SELECT 
+                    m.Nombre_Medico, 
+                    m.Apellido_Paterno_Medico, 
+                    m.Apellido_Materno_Medico, 
+                    m.Cedula_Profesional_Medico, 
+                    m.Escuela_Egresado_Medico, 
+                    e.Nombre_Especialidad_Medica 
+                FROM 
+                    medico m
+                JOIN
+                    especialidad_medica e ON m.idEspecialidad_Medica = e.idEspecialidad_Medica
+                WHERE 
+                    m.Nombre_Medico = ? AND
+                    m.Apellido_Paterno_Medico = ? AND
+                    m.Apellido_Materno_Medico = ?`;
+
+    conexion.query(query, [nombre, apellidoPaterno, apellidoMaterno], (err, results) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).send('Error en el servidor');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
+
 
     //::::::::::::::::::::::::::::::::::::::::CONEXIÓN CON EL SERVIDOR::::::::::::::::::::::::::::::::::::::::::::::::::::
 

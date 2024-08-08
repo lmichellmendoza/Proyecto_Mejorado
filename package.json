@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev":"nodemon index.js"
+    
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,10 @@
     "ejs": "^3.1.10",
     "espress": "^0.0.0",
     "express": "^4.19.2",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.10.3"
+    "mysql2": "^3.10.3",
+    "nodemon": "^3.1.4",
+    "save-dev": "^0.0.1-security"
   }
 }

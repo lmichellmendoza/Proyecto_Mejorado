@@ -230,23 +230,25 @@ header {
 .r_especificaciones{ 
     position: absolute;
     font-size: 15px;
-    border: 1px solid white;
-    background-color: white;
+    /*border: 1px solid white;
+    background-color: white;*/
+    border: black;
+    background-color: transparent;
     resize: none;
     padding: 25px;
 }
-#r_nombre_paciente { top: 100px; left: 1000px; width: 250px; height: 20px; border: 1px solid rgb(0, 0, 0); }
-#r_numero_expediente_paciente { top: 345px; left: 710px; width: 150px; height: 20px; border: 1px solid black; }
-#r_edad_paciente { top: 470px; left: 100px; width: 50px; height: 20px; border: 1px solid black; }
-#r_peso_paciente { top: 473px; left: 330px; width: 55px; height: 20px; border: 1px solid black; }
-#r_diagnostico_paciente { top: 475px; left: 600px; width: 350px; height: 20px; border: 1px solid black; }
-#r_nacimiento_paciente { top: 604px; left: 220px; width: 140px; height: 20px; border: 1px solid black; }
-#r_domicilio_paciente { top: 405px; left: 470px; width: 480px; height: 20px; border: 1px solid black; }
-#r_nombre_medico { top: 822px; left: 150px; width: 440px; height: 18px; }
-#r_cedula_medico { top: 838px; left: 150px; width: 100px; height: 17px; }
-#r_especialidad_medico { top: 880px; left: 150px; width: 150px; height: 16px; }
-#r_egresado_medico { top: 895px; left: 150px; width: 150px; height: 16px; }
-#r_especificaciones { top: 575px; left: 500px; width: 900px; height: 250px; }
+#r_nombre_paciente { top: 460px; left: 660px; width: 400px; height: 20px; border: 1px solid rgb(0, 0, 0); }
+#r_numero_expediente_paciente { top: 460px; left: 1160px; width: 200px; height: 20px; border: 1px solid black; }
+#r_edad_paciente { top: 490px; left: 600px; width: 100px; height: 20px; border: 1px solid black; }
+#r_peso_paciente { top: 490px; left: 800px; width: 100px; height: 20px; border: 1px solid black; }
+#r_diagnostico_paciente { top: 493px; left: 1050px; width: 350px; height: 20px; border: 1px solid black; }
+#r_nacimiento_paciente { top: 525px; left: 660px; width: 170px; height: 20px; border: 1px solid black; }
+#r_domicilio_paciente { top: 525px; left: 915px; width: 480px; height: 20px; border: 1px solid black; }
+#r_nombre_medico { top: 840px; left: 600px; width: 440px; height: 18px; }
+#r_cedula_medico { top: 855px; left: 600px; width: 100px; height: 17px; }
+#r_especialidad_medico { top: 870px; left: 600px; width: 150px; height: 16px; }
+#r_egresado_medico { top: 884px; left: 600px; width: 150px; height: 16px; }
+#r_especificaciones { top: 573px; left: 500px; width: 900px; height: 250px; }/*575*/
 #r_fecha {
     position: absolute;
     top: 70px;
@@ -259,6 +261,18 @@ header {
 }
 
 
-#r_boton_fecha { top: 60px; left: 690px; }
-#r_boton_pdf { top: 540px; left: 733px; width: 180px; height: 60px; }
-#r_menu_doctor { top: 500px; left: 350px; width: 300px;height: 20px; }
+#r_boton_fecha { top: 60px; left: 1200px; }
+#r_boton_pdf { top: 850px; left: 733px; width: 180px; height: 60px; }
+#r_menu_doctor { top: 820px; left: 750px; width: 300px;height: 20px; }
+
+
+
+.tap-button-receta{
+    text-align: center;
+    background:  #FFC107;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px; /* Bordes redondeados */
+}
+

@@ -133,3 +133,51 @@ $(document).ready(function() {
         }));
     }
 });
+
+// *************************RECETA MEDICA************************************************
+//Obtener valores de medicos
+
+// Obtener valores de médicos
+$.ajax({
+    url: '/receta-container',
+    method: 'POST',
+    success: function(doctores) {
+        doctores.forEach(function(doctor) {
+            const NombreCompleto = `${doctor.Nombre_Medico} ${doctor.Apellido_Paterno_Medico} ${doctor.Apellido_Materno_Medico}`;
+            $("#r_menu_doctor").append(new Option(NombreCompleto, doctor.Cedula_Profesional_Medico));
+        });
+    },
+    error: function(error) {
+        console.error('Error al obtener los doctores:', error);
+    }
+});
+
+// Actualizar campos al seleccionar un médico
+$('#r_menu_doctor').on('change', function() {
+    var selectedCedula = $(this).val();
+    $.ajax({
+        url: '/receta-container',
+        method: 'POST',
+        data: { cedula: selectedCedula },
+        success: function(selectedDoctor) {
+            if (selectedDoctor.length > 0) {
+                var doctor = selectedDoctor[0];
+                $('#r_nombre_medico').val(`${doctor.Nombre_Medico} ${doctor.Apellido_Paterno_Medico} ${doctor.Apellido_Materno_Medico}`);
+                $('#r_cedula_medico').val(doctor.Cedula_Profesional_Medico);
+                $('#r_especialidad_medico').val(doctor.Nombre_Especialidad_Medica);
+                $('#r_egresado_medico').val(doctor.Escuela_Egresado_Medico);
+            } else {
+                $('#r_nombre_medico').val('');
+                $('#r_cedula_medico').val('');
+                $('#r_especialidad_medico').val('');
+                $('#r_egresado_medico').val('');
+            }
+        },
+        error: function(error) {
+            console.error('Error al obtener los datos del médico:', error);
+        }
+    });
+});
+
+
+
