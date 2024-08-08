@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadro de Mando Hospitalario</title>
+    <link rel="stylesheet" href="styles_reportes.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="public\images\logo_10.png" alt="logo_10" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>Cuadro de Mando Hospitalario</h1>
+                <div class="budgets">
+                    <div class="budget-box">
+                        <h3>Presupuesto Dos Meses Anteriores:</h3>
+                        <p id="presupuesto-dos-meses-anteriores" contenteditable="true">$7000</p>
+                    </div>
+                    <div class="budget-box">
+                        <h3>Presupuesto Mensual Anterior:</h3>
+                        <p id="presupuesto-mensual-anterior" contenteditable="true">$8000</p>
+                    </div>
+                    <div class="budget-box">
+                        <h3>Presupuesto Mensual Actual:</h3>
+                        <p id="presupuesto-mensual-actual" contenteditable="true">$10000</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <button id="modificar-presupuestos">Modificar Presupuestos</button>
+        <section class="main-form">
+            <h2>Datos Principales:</h2>
+            <form id="support-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numero-carnet">Número de Carnet:</label>
+                        <input type="text" id="numero-carnet" name="numero-carnet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre(s):</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido-paterno">Apellido Paterno:</label>
+                        <input type="text" id="apellido-paterno" name="apellido-paterno" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido-materno">Apellido Materno:</label>
+                        <input type="text" id="apellido-materno" name="apellido-materno" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edad">Edad:</label>
+                        <input type="text" id="edad" name="edad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion-apoyo">Descripción de Apoyo:</label>
+                        <input type="text" id="descripcion-apoyo" name="descripcion-apoyo">
+                    </div>
+                    <div class="form-group">
+                        <label for="monto-economico">Monto Económico:</label>
+                        <input type="text" id="monto-economico" name="monto-economico">
+                    </div>
+                    <div class="form-group">
+                        <label for="entidad-federativa">Entidad Federativa:</label>
+                        <select id="entidad-federativa" name="entidad-federativa">
+                            <option value="Hidalgo" selected>Hidalgo</option>
+                            <!-- Otras opciones pueden ser añadidas aquí -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha-solicitud-apoyo">Fecha de solicitud de Apoyo:</label>
+                        <input type="date" id="fecha-solicitud-apoyo" name="fecha-solicitud-apoyo">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-resolucion-apoyo">Fecha de resolución de Apoyo:</label>
+                        <input type="date" id="fecha-resolucion-apoyo" name="fecha-resolucion-apoyo">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-apoyo">Tipo de Apoyo:</label>
+                        <select id="tipo-apoyo" name="tipo-apoyo">
+                            <option value="económico">Económico</option>
+                            <option value="médico">Médico</option>
+                            <option value="psicológico">Psicológico</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo" name="sexo">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" id="añadir-apoyo-medico">Añadir Apoyo Médico</button>
+            </form>
+        </section>
+        <section class="table-section">
+            <h2>Registros</h2>
+            <input type="text" id="search" placeholder="Buscar en la tabla">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="personal">Datos Personales</button>
+                <button class="tab-button" data-tab="externo">Ayudas Externas</button>
+            </div>
+            <table id="personal-tab" class="tab-content">
+                <thead>
+                    <tr>
+                        <th>Número de Carnet</th>
+                        <th>Nombre(s)</th>
+                        <th>Apellido Materno</th>
+                        <th>Apellido Paterno</th>
+                        <th>Sexo</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody id="registro-table-body-personal">
+                    <!-- Filas de datos personales se generarán aquí -->
+                </tbody>
+            </table>
+            <table id="externo-tab" class="tab-content" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Número de Carnet</th>
+                        <th>Descripción de Apoyo</th>
+                        <th>Monto Económico</th>
+                        <th>Fecha de solicitud de Apoyo</th>
+                        <th>Fecha de resolución de Apoyo</th>
+                        <th>Tipo de Apoyo</th>
+                    </tr>
+                </thead>
+                <tbody id="registro-table-body-externo">
+                    <!-- Filas de ayudas externas se generarán aquí -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('support-form');
+            const searchInput = document.getElementById('search');
+            const personalTab = document.getElementById('personal-tab');
+            const externoTab = document.getElementById('externo-tab');
+            const registroTableBodyPersonal = document.getElementById('registro-table-body-personal');
+            const registroTableBodyExterno = document.getElementById('registro-table-body-externo');
+    
+            // Almacenar las tablas originales para restaurarlas después del filtro
+            let originalTablePersonalHTML = registroTableBodyPersonal.innerHTML;
+            let originalTableExternoHTML = registroTableBodyExterno.innerHTML;
+    
+            // Evento para cambiar entre pestañas de datos personales y ayudas externas
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+    
+                    if (this.getAttribute('data-tab') === 'personal') {
+                        personalTab.style.display = 'table';
+                        externoTab.style.display = 'none';
+                    } else if (this.getAttribute('data-tab') === 'externo') {
+                        personalTab.style.display = 'none';
+                        externoTab.style.display = 'table';
+                    }
+                });
+            });
+    
+            // Evento para añadir apoyo médico (datos personales)
+            document.getElementById('añadir-apoyo-medico').addEventListener('click', function (event) {
+                event.preventDefault();
+    
+                // Obtener los valores del formulario
+                const numeroCarnet = document.getElementById('numero-carnet').value;
+                const nombre = document.getElementById('nombre').value;
+                const apellidoPaterno = document.getElementById('apellido-paterno').value;
+                const apellidoMaterno = document.getElementById('apellido-materno').value;
+                const sexo = document.getElementById('sexo').value;
+                const edad = document.getElementById('edad').value;
+    
+                // Crear una nueva fila en la tabla de datos personales con los datos del formulario
+                const newRowPersonal = document.createElement('tr');
+                newRowPersonal.innerHTML = `
+                    <td>${numeroCarnet}</td>
+                    <td>${nombre}</td>
+                    <td>${apellidoMaterno}</td>
+                    <td>${apellidoPaterno}</td>
+                    <td>${sexo}</td>
+                    <td>${edad}</td>
+                `;
+    
+                // Agregar la nueva fila a la tabla de datos personales
+                registroTableBodyPersonal.appendChild(newRowPersonal);
+    
+                // Limpiar los campos del formulario después de agregar el registro
+                form.reset();
+            });
+    
+            // Evento para filtrar la tabla por texto
+            searchInput.addEventListener('input', function () {
+                const searchText = this.value.trim().toLowerCase();
+    
+                // Restaurar la tabla original según la pestaña activa
+                if (document.querySelector('.tab-button.active').getAttribute('data-tab') === 'personal') {
+                    registroTableBodyPersonal.innerHTML = originalTablePersonalHTML;
+                } else {
+                    registroTableBodyExterno.innerHTML = originalTableExternoHTML;
+                }
+    
+                // Filtrar y mostrar las filas que coincidan con el texto de búsqueda
+                const currentTableBody = document.querySelector('.tab-button.active').getAttribute('data-tab') === 'personal' ?
+                    registroTableBodyPersonal :
+                    registroTableBodyExterno;
+    
+                const rows = currentTableBody.querySelectorAll('tr');
+                rows.forEach(row => {
+                    const cells = row.getElementsByTagName('td');
+                    let match = false;
+                    for (let i = 0; i < cells.length; i++) {
+                        if (cells[i].textContent.toLowerCase().indexOf(searchText) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                    row.style.display = match ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
