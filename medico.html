@@ -18,11 +18,17 @@
             <input type="text" id="cedula" name="cedula" required>
 
             <label for="especialidad">Especialidad:</label>
-            <input type="text" id="especialidad" name="especialidad" required>
+            <select id="especialidad" name="especialidad" required>
+                <!-- Las opciones de especialidad se cargarán aquí -->
+            </select>
+
+            <label for="escuela">Escuela de Egreso:</label>
+            <input type="text" id="escuela" name="escuela" required>
 
             <button type="button" onclick="guardarMedico()">Guardar</button>
             <button type="button" onclick="modificarMedico()">Modificar</button>
             <button type="button" onclick="eliminarMedico()">Eliminar</button>
+            <button type="button" onclick="mostrarModalEspecialidad()">Agregar Especialidad</button>
         </form>
     </div>
     <table>
@@ -31,12 +37,25 @@
                 <th>Nombre</th>
                 <th>Cédula</th>
                 <th>Especialidad</th>
+                <th>Escuela de Egreso</th>
             </tr>
         </thead>
         <tbody id="medicoTableBody">
             <!-- Aquí se añadirán los médicos -->
         </tbody>
     </table>
+
+    <!-- Modal para agregar especialidad -->
+    <div id="modalEspecialidad" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalEspecialidad()">&times;</span>
+            <h2>Agregar Nueva Especialidad</h2>
+            <label for="nuevaEspecialidad">Nombre de la Especialidad:</label>
+            <input type="text" id="nuevaEspecialidad" name="nuevaEspecialidad" required>
+            <button type="button" onclick="guardarEspecialidad()">Guardar Especialidad</button>
+        </div>
+    </div>
+
     <script src="medico.js"></script>
 </body>
 </html>
