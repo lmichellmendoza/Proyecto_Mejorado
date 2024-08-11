@@ -2,7 +2,7 @@
     const express = require("express");
     const mysql2 = require("mysql2"); //Libreria de mysql
     const path = require("path");
-    const conexion = require("../conexion"); //Importamos el archivo de conexion 
+    const conexion = require('./conexion'); //Importamos el archivo de conexion 
     const bcrypt = require('bcrypt'); //Libreria bcrypt
 
     

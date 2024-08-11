@@ -133,3 +133,134 @@ $(document).ready(function() {
         }));
     }
 });
+
+
+//::::::::::::::::::::::::PARA LAS VALIDACIONES DEL SISTEMA:::::::::::::::::::::::
+
+        // Función que se ejecuta cuando el DOM está listo
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/validacion_usuarios') // Llama a la ruta API que devuelve los datos de la vista
+                .then(response => response.json()) // Convierte la respuesta a JSON
+                .then(data => {
+                    const tbody = document.querySelector('#tabla-validaciones tbody'); 
+
+                    tbody.innerHTML = ''; // Limpiar el contenido actual
+
+                    // Recorre cada usuario y añade una fila a la tabla
+                    data.forEach(usuario => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${usuario.username}</td>
+                            <td>${usuario.nombreUsuario} ${usuario.ApellidoUsuario} ${usuario.ApellidoMaternoUsuario}</td>
+                            <td>${usuario.Nombre_Rol}</td>
+                            <td>${usuario.CorreoElectronico}</td>
+                            <td>${usuario.NumeroCelularUsuario}</td>
+                            <td>
+                            <button class="btn-aceptar" data-id="${usuario.idUsuario}">Aceptar</button>
+                        <button class="btn-rechazar" data-id="${usuario.idUsuario}">Rechazar</button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                 // Añadir eventos a los botones
+                tr.querySelector('.btn-aceptar').addEventListener('click', () => {
+                    const id = tr.querySelector('.btn-aceptar').getAttribute('data-id');
+                    if (id) {
+                        fetch(`/boton_aceptar/${id}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            tr.remove(); // Elimina la fila de la tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                    } else {
+                        alert('ID no válido');
+                    }
+                });
+
+                tr.querySelector('.btn-rechazar').addEventListener('click', () => {
+                    const id = tr.querySelector('.btn-rechazar').getAttribute('data-id');
+                    if (id) {
+                        fetch(`/boton_rechazar/${id}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            tr.remove(); // Elimina la fila de la tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                    } else {
+                        alert('ID no válido');
+                    }
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+});
+
+
+
+//::::::::::::::::::.PARA LOS REGISTROS DE MEDICOS:::::::::::::::::
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/registro_medico') // Llama a la ruta API que devuelve los datos de la vista
+        .then(response => response.json()) // Convierte la respuesta a JSON
+        .then(data => {
+            const tbody = document.querySelector('#rm_tabla tbody'); 
+
+            tbody.innerHTML = ''; // Limpiar el contenido actual
+
+            // Recorre cada médico y añade una fila a la tabla
+            data.forEach(medico => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td>${medico.Cedula_Profesional_Medico}</td>
+                <td>${medico.Nombre_Medico} ${medico.Apellido_Paterno_Medico} ${medico.Apellido_Materno_Medico}</td>
+                <td>${medico.Nombre_Especialidad_Medica}</td>
+                <td>${medico.Escuela_Egresado_Medico}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+});
+
+//::::::::::::::::::::::PARA LOS REGISTROS PACIENTES:::::::::::::::::::::::::::::::::::::::::::
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/registro_pacientes_director') // Llama a la ruta API que devuelve los datos de la vista
+        .then(response => response.json()) // Convierte la respuesta a JSON
+        .then(data => {
+            const tbody = document.querySelector('#rp_tabla tbody'); 
+
+            tbody.innerHTML = ''; // Limpiar el contenido actual
+
+            // Recorre cada médico y añade una fila a la tabla
+            data.forEach(paciente => {
+                
+                // Formatear la fecha de nacimiento para que se muestre solo la fecha
+                const fechaNacimiento = new Date(paciente.fecha_nacimiento_paciente).toLocaleDateString();
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td>${paciente.Numero_Expediente}</td>
+                <td>${paciente.Nombre_Pacientes}</td>
+                <td>${paciente.ApellidoPaterno_Pacientes}</td>
+                <td>${paciente.ApellidoMaterno_Pacientes}</td>
+                <td>${fechaNacimiento}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+});

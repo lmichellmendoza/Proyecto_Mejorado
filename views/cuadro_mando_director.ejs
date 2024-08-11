@@ -89,19 +89,14 @@
                             <form id="medicoForm" class="formulario_medico">
                                 <label for="nombre">Nombre:</label>
                                 <input class="input_formm" type="text" id="nombre" name="nombre" required>
-
                                 <label for="ap_medico">Apellido Paterno:</label>
                                 <input class="input_formm" type="text" id="ap_medico" name="ap_medico" required>
-
                                 <label for="am_medico">Apellido Materno:</label>
                                 <input class="input_formm" type="text" id="am_medico" name="am_medico" required>
-
                                 <label for="cedula">Cédula:</label>
                                 <input class="input_formm" type="text" id="cedula" name="cedula" required>
-
                                 <label for="especialidad">Especialidad:</label>
                                 <input class="input_formm" type="text" id="especialidad" name="especialidad" required>
-
                                 <button type="button" class="rm_boton" clonclick="guardarMedico()">Guardar</button>
                                 <button type="button" class="rm_boton" onclick="modificarMedico()">Modificar</button>
                                 <button type="button" class="rm_boton" onclick="eliminarMedico()">Eliminar</button>
@@ -109,17 +104,18 @@
                         </div>
                         
                         <table id="rm_tabla" class="rm_tabla">
-                            <thead class="rm_t_tabla">
-                                <th class="rm_t_tabla">Cédula Profesional</th>
-                                <th class="rm_t_tabla">Nombre</th>
-                                <th class="rm_t_tabla">Especialidad</th>
-                                <th class="rm_t_tabla">Egresado</th>
+                            <thead>
+                                <tr>
+                                    <th >Cédula Profesional</th>
+                                    <th >Nombre</th>
+                                    <th >Especialidad</th>
+                                    <th >Egresado</th>
+                                </tr>
                             </thead>
-                            <tbody id="t_medicos_registro">
+                            <tbody >
                                     <!-- Van los medicos-->
                             </tbody>
                         </table>
-
                     </div>    
                     <!-- Registro Pacientes--------------------------->
 
@@ -129,19 +125,14 @@
                             <form id="pacientesForm" class="formulario_pacientes">
                                 <label for="rp_numero_expediente">Número de Expediente:</label>
                                 <input class="input_formm" type="text" id="rp_numero_expediente" name="rp_numero_expediente" required>
-                
                                 <label for="rp_nombre">Nombre:</label>
                                 <input class="input_formm" type="text" id="rp_nombre" name="rp_nombre" required>
-                
                                 <label for="rap_paciente">Apellido Paterno:</label>
                                 <input class="input_formm" type="text" id="rap_paciente" name="rap_paciente" required>
-                
                                 <label for="ram_paciente">Apellido Materno:</label>
                                 <input class="input_formm" type="text" id="ram_paciente" name="ram_paciente" required>
-                
                                 <label for="rp_fechaNacimiento">Fecha de Nacimiento:</label>
                                 <input class="input_formm" type="date" id="rp_fechaNacimiento" name="rp_fechaNacimiento" required>
-                
                                 <button type="button" class="rm_boton" onclick="guardarPaciente()">Guardar</button>
                                 <button type="button" class="rm_boton" onclick="modificarPaciente()">Modificar</button>
                                 <button type="button" class="rm_boton" onclick="eliminarPaciente()">Eliminar</button>
@@ -149,26 +140,47 @@
                         </div>
                         
                         <table id="rp_tabla" class="rm_tabla">
-                            <thead class="rm_t_tabla">
+                            <thead >
                                 <tr>
-                                    <th class="rm_t_tabla">Número de Expediente</th>
-                                    <th class="rm_t_tabla">Nombre</th>
-                                    <th class="rm_t_tabla">Apellido Paterno</th>
-                                    <th class="rm_t_tabla">Apellido Materno</th>
-                                    <th class="rm_t_tabla">Fecha de Nacimiento</th>
+                                    <th >Número de Expediente</th>
+                                    <th >Nombre</th>
+                                    <th >Apellido Paterno</th>
+                                    <th >Apellido Materno</th>
+                                    <th >Fecha de Nacimiento</th>
                                 </tr>
                             </thead>
-                            <tbody id="t_pacientes_registro">
+                            <tbody >
                                 <!-- Los pacientes se agregarán aquí dinámicamente -->
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- SOLICITUDES DE INGRESO AL SISTEMA -->
+                    <div id="solicitudes-sistem-seccion" class="content-section">
+                        <h2>Solicitudes del Sistema</h2>
+                        <div class="solicitudes-sistem-container">
+                            <table class="tabla-sistema" id="tabla-validaciones">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Número de Celular</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Aquí va lo que se manda del JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
                     <!-- Otras secciones pueden ir aquí -->
                 </div>
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="public/js/cuadro_mando_director_script.js"></script>
     <!-- Agregar JS para el calendario (opcional) -->

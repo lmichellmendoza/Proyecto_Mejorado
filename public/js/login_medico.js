@@ -1,7 +1,7 @@
 //const { name } = require("ejs");
 
 
-const loginButton = document.getElementById("login");
+const loginButton = document.getElementById("btn_ingresar");
 const container = document.getElementById("container");
 
 

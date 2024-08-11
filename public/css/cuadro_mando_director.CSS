@@ -261,7 +261,59 @@ label {
     text-align: center;
 }
 
-th {
-    background-color: #9c27b0;
+.rm_tabla td {
+    padding: 15px; /* Aumenta el espacio dentro de las celdas */
+    border: 1px solid #fff; /* Bordes blancos para mantener consistencia */
 }
 
+#rm_tabla td:nth-child(2) {
+    width: 400px; /* Para hacer mas grande la tabla de Nombre */
+}
+
+
+
+/* Estilos para el encabezado de la tabla */
+th {
+    background-color: #9c27b0;
+    color: #fff; /* Asegúrate de que el texto sea visible */
+    text-align: center;
+    padding: 10px;
+}
+
+#tabla-validaciones thead th {
+    visibility: visible; /* Asegúrate de que los encabezados sean visibles */
+}
+
+
+#tabla-validaciones td:nth-child(2) {
+    width: 400px; /* Para hacer mas grande la tabla de Nombre */
+}
+
+/* Estilos para la celda que contiene los botones */
+.table-actions {
+    text-align: center; /* Centra los botones en la celda */
+}
+
+/* Estilos para los botones de acción */
+.btn-aceptar, .btn-rechazar {
+    display: flex; /* Muestra los botones en línea horizontal */
+    background-color: #4caf50; /* Verde para aceptar */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 2px; /* Espacio entre botones */
+}
+
+.btn-aceptar:hover {
+    background-color: #45a049;
+}
+
+.btn-rechazar {
+    background-color: #f44336; /* Rojo para rechazar */
+}
+
+.btn-rechazar:hover {
+    background-color: #e53935;
+}
