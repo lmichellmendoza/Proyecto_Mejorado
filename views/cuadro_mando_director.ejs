@@ -29,10 +29,10 @@
                     <p id="user-name">Nombre del Usuario</p>
                 </div>
                 <div class="dropdown-content">
-                    <button class="tab-button" data-tab="personal"><i class="fa fa-user"></i> Datos Personales</button>
+                <!--   <button class="tab-button" data-tab="personal"><i class="fa fa-user"></i> Datos Personales</button>  --> 
                     <button class="tab-button" data-tab="receta"><i class="fa fa-receipt"></i> Receta Médica</button>
-                    <button class="tab-button" data-tab="citas"><i class="fa fa-calendar-check"></i> Citas Médicas y Agenda</button>
-                    <button class="tab-button" data-tab="plan-tratamiento"><i class="fa fa-clipboard-list"></i> Plan de Tratamiento</button>
+                <!--    <button class="tab-button" data-tab="citas"><i class="fa fa-calendar-check"></i> Citas Médicas y Agenda</button> -->
+                <!--    <button class="tab-button" data-tab="plan-tratamiento"><i class="fa fa-clipboard-list"></i> Plan de Tratamiento</button> -->
                     <button class="tab-button" data-tab="registro-pacientes"><i class="fa fa-user-plus"></i> Registrar Pacientes</button>
                     <button class="tab-button" data-tab="registro-medico"><i class="fa fa-user-md"></i> Registrar Médicos</button>
                     <button class="tab-button" data-tab="registro-ts"><i class="fa fa-hands-helping"></i> Registrar Trabajo Social</button>
@@ -40,7 +40,7 @@
                     <button class="tab-button" data-tab="validac"><i class="fa fa-check"></i> Validaciones</button>
                     <button class="tab-button" data-tab="cierre-sesion"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</button>
                 </div>
-            </nav>
+            </nav> 
 
             <div class="content">
                 <button id="open-sidebar" class="open-btn"><i class="fa fa-bars"></i> Menu</button>
@@ -95,9 +95,18 @@
                                 <input class="input_formm" type="text" id="am_medico" name="am_medico" required>
                                 <label for="cedula">Cédula:</label>
                                 <input class="input_formm" type="text" id="cedula" name="cedula" required>
-                                <label for="especialidad">Especialidad:</label>
-                                <input class="input_formm" type="text" id="especialidad" name="especialidad" required>
-                                <button type="button" class="rm_boton" clonclick="guardarMedico()">Guardar</button>
+                                <label for="escuela">Escuela Egresada:</label>
+                                <input class="input_formm" type="text" id="escuela_egresado" name="escuela" required>
+                                <!-- <label for="especialidad">Especialidad:</label>
+                                <input class="input_formm" type="text" id="especialidad" name="especialidad" required> -->
+                                <div class="dropdown">
+                                    <label for="options_especialidadm"> Especialidad Médica</label>
+                                    <select id="options_especialidadm" class="dropdown-select" name="opciones_medicos">
+                                        <!-- Aqui van los desplegables-->
+                                    </select>
+                                </div>
+                                
+                                <button type="submit" class="rm_boton" clonclick="guardarMedico()">Guardar</button>
                                 <button type="button" class="rm_boton" onclick="modificarMedico()">Modificar</button>
                                 <button type="button" class="rm_boton" onclick="eliminarMedico()">Eliminar</button>
                             </form>

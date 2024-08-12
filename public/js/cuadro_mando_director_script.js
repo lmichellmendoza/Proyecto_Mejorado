@@ -138,18 +138,16 @@ $(document).ready(function() {
 //::::::::::::::::::::::::PARA LAS VALIDACIONES DEL SISTEMA:::::::::::::::::::::::
 
         // Función que se ejecuta cuando el DOM está listo
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('/validacion_usuarios') // Llama a la ruta API que devuelve los datos de la vista
-                .then(response => response.json()) // Convierte la respuesta a JSON
-                .then(data => {
-                    const tbody = document.querySelector('#tabla-validaciones tbody'); 
-
-                    tbody.innerHTML = ''; // Limpiar el contenido actual
-
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/validacion_usuarios') // Llama a la ruta API que devuelve los datos de la vista
+        .then(response => response.json()) // Convierte la respuesta a JSON
+        .then(data => {
+            const tbody = document.querySelector('#tabla-validaciones tbody'); 
+                tbody.innerHTML = ''; // Limpiar el contenido actual
                     // Recorre cada usuario y añade una fila a la tabla
                     data.forEach(usuario => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
                             <td>${usuario.username}</td>
                             <td>${usuario.nombreUsuario} ${usuario.ApellidoUsuario} ${usuario.ApellidoMaternoUsuario}</td>
                             <td>${usuario.Nombre_Rol}</td>
@@ -208,6 +206,25 @@ $(document).ready(function() {
 
 //::::::::::::::::::.PARA LOS REGISTROS DE MEDICOS:::::::::::::::::
 
+//Para Menú desplegable
+$.ajax({
+    url: '/areas', // endpoint que devuelve las áreas
+    method: 'GET', // debe de coincidir con el del back 
+    success: function(especialidades) {
+        $("#options_especialidadm").empty(); // Limpiar opciones existentes
+        especialidades.forEach(function(especialidad) {
+            const option = new Option(especialidad.Nombre_Especialidad_Medica, especialidad.idEspecialidad_Medica);
+            $("#options_especialidadm").append(option);
+        });
+    },
+    error: function(error) {
+        console.error('Error al obtener las áreas:', error);
+    }
+});
+
+
+
+//Para la tabla de Médicos
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/registro_medico') // Llama a la ruta API que devuelve los datos de la vista
         .then(response => response.json()) // Convierte la respuesta a JSON
@@ -232,6 +249,76 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al obtener los datos:', error);
         });
 });
+
+
+//Para el registro de médicos
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const formulario_medico = document.getElementById('medicoForm');
+
+    formulario_medico.addEventListener('submit', async (event) => {
+        event.preventDefault(); 
+
+        try {
+            const response = await fetch('/formulario_registro_medico', { // Asegúrate de que la ruta tenga el "/" inicial
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre_medico: document.getElementById('nombre').value,
+                    apellidop_medico: document.getElementById('ap_medico').value,
+                    apellidom_medico: document.getElementById('am_medico').value,
+                    cedula_medico: document.getElementById('cedula').value,
+                    especialidad_medica: document.getElementById('options_especialidadm').value,
+                    escuela_egresado:document.getElementById('escuela_egresado').value
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Médico registrado con éxito');
+                formulario_medico.reset(); // Resetea el formulario después del registro exitoso
+                actualizarTablaMedicos();
+            } else {
+                alert(data.message || 'Hubo un problema con la solicitud');
+            }
+        } catch (error) {
+            console.error('Error al enviar los datos: ', error);
+        }
+    });
+});
+
+//Para actualizar la tabla despues de que se agregue
+document.addEventListener('DOMContentLoaded', () => {
+    actualizarTablaMedicos();
+});
+
+async function actualizarTablaMedicos() {
+    try {
+        const response = await fetch('/registro_medico');
+        const data = await response.json();
+
+        const tbody = document.querySelector('#rm_tabla tbody');
+        tbody.innerHTML = ''; // Limpiar el contenido actual
+
+        data.forEach(medico => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${medico.Cedula_Profesional_Medico}</td>
+                <td>${medico.Nombre_Medico} ${medico.Apellido_Paterno_Medico} ${medico.Apellido_Materno_Medico}</td>
+                <td>${medico.Nombre_Especialidad_Medica}</td>
+                <td>${medico.Escuela_Egresado_Medico}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+    }
+}
+
+
 
 //::::::::::::::::::::::PARA LOS REGISTROS PACIENTES:::::::::::::::::::::::::::::::::::::::::::
 
@@ -264,3 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al obtener los datos:', error);
         });
 });
+
+
+
+
+//:::::::::::::::::::::::::::::::
