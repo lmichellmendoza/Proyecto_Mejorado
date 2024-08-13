@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to bottom right, black, purple);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 1000px;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+    background-image: url('Receta.png');
+    background-size: cover;
+}
+.input-field {
+    position: absolute;
+    font-size: 15px;
+    border: none;
+    background-color: transparent;
+}
+.text-area {
+    position: absolute;
+    font-size: 15px;
+    border: 1px solid white;
+    background-color: white;
+    resize: none;
+    padding: 25px;
+}
+#nombre_paciente { top: 142px; left: 210px; width: 350px; height: 20px; border: 1px solid rgb(0, 0, 0); }
+#expediente_paciente { top: 145px; left: 710px; width: 150px; height: 20px; border: 1px solid black; }
+#edad_paciente { top: 170px; left: 100px; width: 50px; height: 20px; border: 1px solid black; }
+#peso_paciente { top: 173px; left: 330px; width: 55px; height: 20px; border: 1px solid black; }
+#diag_paciente { top: 175px; left: 600px; width: 350px; height: 20px; border: 1px solid black; }
+#fec_nac_paciente { top: 204px; left: 220px; width: 140px; height: 20px; border: 1px solid black; }
+#domicilio_paciente { top: 205px; left: 470px; width: 480px; height: 20px; border: 1px solid black; }
+#nombre_medico { top: 522px; left: 150px; width: 440px; height: 18px; }
+#cedula_medico { top: 538px; left: 150px; width: 100px; height: 17px; }
+#especialidad_medico { top: 550px; left: 150px; width: 150px; height: 16px; }
+#egresado_medico { top: 565px; left: 150px; width: 150px; height: 16px; }
+#especificaciones { top: 245px; left: 50px; width: 850px; height: 210px; }
+#fecha {
+    position: absolute;
+    top: 70px;
+    left: 800px;
+    font-size: 24px;
+}
+#calendar {
+    position: absolute;
+    display: none;
+}
+.button {
+    position: absolute;
+    padding: 7px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+#boton_fecha { top: 60px; left: 690px; }
+#boton_pdf { top: 540px; left: 733px; width: 180px; height: 60px; }
+#doctor_menu { top: 500px; left: 350px; width: 300px; height: 20px; }
