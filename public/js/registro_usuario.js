@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                 if (data.success) {
                     // Mostrar mensaje de éxito y limpiar el formulario
-                    alert('Solicitud enviada, tu registro necesita la aprobación del encargado');
+                    
                     formularioReg.reset(); // Limpia los campos del formulario
                 } else {
                     // Mostrar mensaje de error

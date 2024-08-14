@@ -87,18 +87,18 @@
                         <h2>Registro de Médicos</h2>
                         <div class="registro_medico-container">
                             <form id="medicoForm" class="formulario_medico">
-                                <label for="nombre">Nombre:</label>
-                                <input class="input_formm" type="text" id="nombre" name="nombre" required>
-                                <label for="ap_medico">Apellido Paterno:</label>
-                                <input class="input_formm" type="text" id="ap_medico" name="ap_medico" required>
-                                <label for="am_medico">Apellido Materno:</label>
-                                <input class="input_formm" type="text" id="am_medico" name="am_medico" required>
-                                <label for="cedula">Cédula:</label>
-                                <input class="input_formm" type="text" id="cedula" name="cedula" required>
-                                <label for="escuela">Escuela Egresada:</label>
-                                <input class="input_formm" type="text" id="escuela_egresado" name="escuela" required>
-                                <!-- <label for="especialidad">Especialidad:</label>
-                                <input class="input_formm" type="text" id="especialidad" name="especialidad" required> -->
+                               <!--- <label for="nombre">Nombre:</label>>-->
+                                <input class="input_formm" placeholder="Nombre Médico" type="text" id="nombre" name="nombre" required>
+                               <!--- <label for="ap_medico">Apellido Paterno:</label> -->
+                                <input class="input_formm" placeholder="Apellido Paterno" type="text" id="ap_medico" name="ap_medico" required>
+                               <!--- <label for="am_medico">Apellido Materno:</label>-->
+                                <input class="input_formm" placeholder="Apellido Materno" type="text" id="am_medico" name="am_medico" required>
+                               <!--- <label for="cedula">Cédula:</label>-->
+                                <input class="input_formm" type="text" placeholder="Cédula Médica" id="cedula" name="cedula" required>
+                               <!--- <label for="escuela">Escuela Egresada:</label>-->
+                                <input class="input_formm" placeholder="Escuela Egresado" type="text" id="escuela_egresado" name="escuela" required>
+                                <!-- <label for="especialidad">Especialidad:</label>-->
+                              <!--   <input class="input_formm" type="text" id="especialidad" name="especialidad" required> -->
                                 <div class="dropdown">
                                     <label for="options_especialidadm"> Especialidad Médica</label>
                                     <select id="options_especialidadm" class="dropdown-select" name="opciones_medicos">
@@ -112,6 +112,7 @@
                             </form>
                         </div>
                         
+                        <div class="tabla_medico">
                         <table id="rm_tabla" class="rm_tabla">
                             <thead>
                                 <tr>
@@ -125,6 +126,7 @@
                                     <!-- Van los medicos-->
                             </tbody>
                         </table>
+                        </div>
                     </div>    
                     <!-- Registro Pacientes--------------------------->
 
@@ -142,9 +144,10 @@
                                 <input class="input_formm" type="text" id="ram_paciente" name="ram_paciente" required>
                                 <label for="rp_fechaNacimiento">Fecha de Nacimiento:</label>
                                 <input class="input_formm" type="date" id="rp_fechaNacimiento" name="rp_fechaNacimiento" required>
-                                <button type="button" class="rm_boton" onclick="guardarPaciente()">Guardar</button>
-                                <button type="button" class="rm_boton" onclick="modificarPaciente()">Modificar</button>
-                                <button type="button" class="rm_boton" onclick="eliminarPaciente()">Eliminar</button>
+                                <button type="submit" class="rm_boton" clonclick="guardarPaciente">Guardar</button>
+                               <!-- <button type="submit" class="rm_boton" onclick="modificarPaciente()">Modificar</button>-->
+                               <!-- <button type="submit" class="rm_boton" onclick="eliminarPaciente()">Eliminar</button>-->
+                                <ul class="error" id="error1"></ul>
                             </form>
                         </div>
                         

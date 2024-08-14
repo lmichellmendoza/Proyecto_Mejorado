@@ -52,6 +52,9 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
+
+
+
     // Inicializar el calendario
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -153,9 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${usuario.Nombre_Rol}</td>
                             <td>${usuario.CorreoElectronico}</td>
                             <td>${usuario.NumeroCelularUsuario}</td>
-                            <td>
+                            </td>
                             <button class="btn-aceptar" data-id="${usuario.idUsuario}">Aceptar</button>
-                        <button class="btn-rechazar" data-id="${usuario.idUsuario}">Rechazar</button>
+                            <button class="btn-rechazar" data-id="${usuario.idUsuario}">Rechazar</button>
                             </td>
                         `;
                         tbody.appendChild(tr);
@@ -283,6 +286,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 actualizarTablaMedicos();
             } else {
                 alert(data.message || 'Hubo un problema con la solicitud');
+               // mostrarError('El usuario no puede ser registrado, revisa los datos ingresados');
             }
         } catch (error) {
             console.error('Error al enviar los datos: ', error);
@@ -322,34 +326,196 @@ async function actualizarTablaMedicos() {
 
 //::::::::::::::::::::::PARA LOS REGISTROS PACIENTES:::::::::::::::::::::::::::::::::::::::::::
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/registro_pacientes_director') // Llama a la ruta API que devuelve los datos de la vista
-        .then(response => response.json()) // Convierte la respuesta a JSON
+    const formulario_paciente = document.getElementById('pacientesForm');
+    const error1 = document.getElementById('error1');
+
+    // FUNCIONES PARA MANEJO DE ERRORES
+    function mostrarError(mensaje) {
+        error1.style.display = 'block';
+        error1.innerHTML = `<li>${mensaje}</li>`;
+    }
+
+    function limpiarErrores() {
+        error1.innerHTML = '';
+        error1.style.display = 'none';
+    }
+
+    // CARGA INICIAL DE LA TABLA
+    fetch('/registro_pacientes_director')
+        .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('#rp_tabla tbody'); 
-
             tbody.innerHTML = ''; // Limpiar el contenido actual
 
-            // Recorre cada médico y añade una fila a la tabla
             data.forEach(paciente => {
-                
                 // Formatear la fecha de nacimiento para que se muestre solo la fecha
                 const fechaNacimiento = new Date(paciente.fecha_nacimiento_paciente).toLocaleDateString();
-                
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                <td>${paciente.Numero_Expediente}</td>
-                <td>${paciente.Nombre_Pacientes}</td>
-                <td>${paciente.ApellidoPaterno_Pacientes}</td>
-                <td>${paciente.ApellidoMaterno_Pacientes}</td>
-                <td>${fechaNacimiento}</td>
+                    <td>${paciente.Numero_Expediente}</td>
+                    <td>${paciente.Nombre_Pacientes}</td>
+                    <td>${paciente.ApellidoPaterno_Pacientes}</td>
+                    <td>${paciente.ApellidoMaterno_Pacientes}</td>
+                    <td>${fechaNacimiento}</td>
+                    <td>
+                    <button class="btn-modificar_paciente" data-id="${paciente.Numero_Expediente}">Modificar</button>
+                    <button class="btn-eliminar_paciente" data-id="${paciente.Numero_Expediente}">Eliminar</button>
+                    </td>
                 `;
                 tbody.appendChild(tr);
+
+                tr.querySelector('.btn-modificar_paciente').addEventListener('click', () => { //Modificar Paciente
+                    const ne = tr.querySelector('.btn-modificar_paciente').getAttribute('data-id');
+                    if (ne) {
+                        fetch(`/boton_modificar_paciente/${id}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            tr.remove(); // Elimina la fila de la tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                    } else {
+                        alert('Número de expediente no válido');
+                    }
+                });  
+
+                tr.querySelector('.btn-eliminar_paciente').addEventListener('click', () => {
+                    const ne = tr.querySelector('.btn-eliminar_paciente').getAttribute('data-id');
+                    if (ne) {
+                        fetch(`/boton_eliminar_paciente/${ne}`, { // Cambiado de en a ne
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            tr.remove(); // Elimina la fila de la tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                    } else {
+                        alert('Número de expediente no válido');
+                    }
+                });
+                
+                
             });
         })
         .catch(error => {
             console.error('Error al obtener los datos:', error);
         });
+
+    // ENVÍO DE FORMULARIO PARA REGISTRAR PACIENTE
+    formulario_paciente.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        limpiarErrores();  // Limpiar errores antes de hacer la solicitud
+
+        try {
+            const response1 = await fetch('/formulario_registro_paciente', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    numero_expediente_paciente: document.getElementById("rp_numero_expediente").value,
+                    nombre_pacientef: document.getElementById("rp_nombre").value,
+                    a_paterno_paciente: document.getElementById("rap_paciente").value,
+                    a_materno_paciente: document.getElementById("ram_paciente").value,
+                    fecha_nacimiento_paciente: document.getElementById("rp_fechaNacimiento").value
+                })
+            });
+
+            const data = await response1.json();
+
+            if (data.success) {
+                mostrarError("Paciente registrado con éxito!");
+                formulario_paciente.reset();
+                await actualizarTablaPacientes(); // Llama a la función de actualización
+            } else {
+                mostrarError(data.message || 'Hubo un problema con la solicitud');
+            }
+        } catch (error) {
+            console.error('Error al enviar los datos:', error);
+            mostrarError('Error al enviar los datos al servidor.');
+        }
+    });
+
+    // FUNCIÓN PARA ACTUALIZAR LA TABLA DE PACIENTES
+    async function actualizarTablaPacientes() {
+        try {
+            const response = await fetch('/registro_pacientes_director');
+            const data = await response.json();
+
+            const tpbody = document.querySelector('#rp_tabla tbody');
+            tpbody.innerHTML = ''; // Limpiar el contenido actual
+
+            data.forEach(paciente => {
+                const fechaNacimiento = new Date(paciente.fecha_nacimiento_paciente).toLocaleDateString();
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${paciente.Numero_Expediente}</td>
+                    <td>${paciente.Nombre_Pacientes}</td>
+                    <td>${paciente.ApellidoPaterno_Pacientes}</td>
+                    <td>${paciente.ApellidoMaterno_Pacientes}</td>
+                    <td>${fechaNacimiento}</td>
+                    </td>
+                    <button class="btn-modificar_paciente" data-id="${paciente.Numero_Expediente}">Modificar</button>
+                    <button class="btn-eliminar_paciente" data-id="${paciente.Numero_Expediente}">Eliminar</button>
+                    </td>
+
+                `;
+                tpbody.appendChild(tr);
+
+                tr.querySelector('.btn-modificar_paciente').addEventListener('click', () => { //Modificar Paciente
+                    const ne = tr.querySelector('.btn-modificar_paciente').getAttribute('data-id');
+                    if (ne) {
+                        fetch(`/boton_modificar_paciente/${en}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            tr.remove(); // Elimina la fila de la tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                    } else {
+                        alert('Número de expediente no válido');
+                    }
+                });  
+
+                tr.querySelector('.btn-eliminar_paciente').addEventListener('click', () => {
+                    const ne = tr.querySelector('.btn-eliminar_paciente').getAttribute('data-id');
+                    if (ne) {
+                        fetch(`/boton_eliminar_paciente/${ne}`, { // Cambiado de en a ne
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            tr.remove(); // Elimina la fila de la tabla
+                        })
+                        .catch(error => console.error('Error:', error));
+                    } else {
+                        alert('Número de expediente no válido');
+                    }
+                });
+                
+                
+            });
+        } catch (error) {
+            console.error('Error al obtener los datos:', error);
+        }
+    }
 });
 
 

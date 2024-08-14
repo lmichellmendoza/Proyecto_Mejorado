@@ -15,6 +15,7 @@ body {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
+    
 }
 
 header {
@@ -247,13 +248,6 @@ label {
     background-color:#9c27b0;
 }
 
-.rm_tabla{
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-collapse: collapse;
-    color:#fff;
-}
-
 .rm_t_tabla
 {
     padding: 10px;
@@ -261,23 +255,91 @@ label {
     text-align: center;
 }
 
-.rm_tabla td {
-    padding: 15px; /* Aumenta el espacio dentro de las celdas */
-    border: 1px solid #fff; /* Bordes blancos para mantener consistencia */
+/*Tablas de Pacientes y Medicos*/
+
+
+.rm_tabla {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-collapse: collapse;
+    color: #333; /* Cambiado a un tono más oscuro para mayor contraste */
+    border-radius: 10px; /* Esquinas curveadas */
+    overflow: hidden; 
+    text-align: center;
 }
+
+th, td{
+    padding: 10px 20px;
+    width: 50px;
+}
+.rm_tabla th {
+    background-color: #FFF176; /* Amarillo pastel */
+    color: #333; /* Color de texto oscuro */
+    text-align: center;
+    padding: 10px;
+}
+
+.rm_tabla td {
+    padding: 0; /*Sin margen interno*/
+    text-align: center; /* Texto centrado */
+    color: #333; /* Color de texto oscuro */
+    
+}
+
+.rm_tabla tr {
+    background-color: #fff; /* Filas blancas */
+    transition: all 0.3s ease;
+}
+
+.rm_tabla tr:hover {
+    background-color: #E1BEE7; /* Morado suave al pasar el mouse */
+    transform: scale(1.05);
+}
+
+.rm_tabla .btn {
+    background-color: #9c27b0; /* Botones morados */
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.rm_tabla .btn:hover {
+    background-color: #7b1fa2; /* Morado más oscuro al pasar el mouse */
+}
+
+.btn-modificar_paciente, .btn-eliminar_paciente{
+    background-color: #9c27b0; /* Botones morados */
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
 
 #rm_tabla td:nth-child(2) {
     width: 400px; /* Para hacer mas grande la tabla de Nombre */
 }
 
 
+/*Hasta aqui esas tablas*/
+.registro_medico-container{
+    display: flex; /* Flexbox para alinear formulario y tabla */
+    gap: 40px; /* Espacio entre formulario y tabla */
+    align-items: flex-start; /* Alinea en la parte superior */
+    justify-content: center; /* Centra el contenido dentro del contenedor */
+}
 
-/* Estilos para el encabezado de la tabla */
-th {
-    background-color: #9c27b0;
-    color: #fff; /* Asegúrate de que el texto sea visible */
-    text-align: center;
-    padding: 10px;
+.formulario_medico {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 6px 6px 0 0; /* Corregido: elimina el doble dos puntos y añade el valor correcto para las esquinas */
 }
 
 #tabla-validaciones thead th {
@@ -317,3 +379,4 @@ th {
 .btn-rechazar:hover {
     background-color: #e53935;
 }
+
