@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receta Médica</title>
+    <link rel="stylesheet" href="receta_new.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="nombre_paciente" class="input-field">
+        <input type="text" id="expediente_paciente" class="input-field">
+        <input type="text" id="edad_paciente" class="input-field">
+        <input type="text" id="peso_paciente" class="input-field">
+        <input type="text" id="diag_paciente" class="input-field">
+        <input type="text" id="fec_nac_paciente" class="input-field">
+        <input type="text" id="domicilio_paciente" class="input-field">
+        <select id="doctor_menu" class="input-field"></select>
+        <input type="text" id="nombre_medico" class="input-field">
+        <input type="text" id="cedula_medico" class="input-field">
+        <input type="text" id="especialidad_medico" class="input-field">
+        <input type="text" id="egresado_medico" class="input-field">
+        <textarea id="especificaciones" class="text-area"></textarea>
+        <div id="fecha"></div>
+        <button id="boton_fecha" class="button">Fecha</button>
+        <button id="boton_pdf" class="button">Generar PDF</button>
+        <div id="calendar"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="receta_new.js"></script>
+</body>
+</html>
