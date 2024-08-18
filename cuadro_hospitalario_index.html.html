@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadro de Mando Hospitalario</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="images/Imagen1.png" alt="Logo sistemas" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>Cuadro de Mando Hospitalario</h1>
+                <div class="legend-container">
+                    <div id="encabezado-presupuesto">
+    <div id="presupuesto-inicial">
+        <label>Presupuesto Inicial:</label>
+        <span id="valor-presupuesto-inicial">$0</span>
+        <input type="number" id="input-presupuesto-inicial" placeholder="Ingrese presupuesto inicial">
+        <button id="establecer-presupuesto">Establecer</button>
+    </div>
+    <div id="costo-apoyo-ingresado">
+        <label>Último Apoyo Ingresado:</label>
+        <span id="valor-costo-apoyo">$0</span>
+        <span id="fecha-costo-apoyo">(sin datos)</span>
+    </div>
+    <div id="presupuesto-a-ejercer">
+        <label>Presupuesto a Ejercer:</label>
+        <span id="valor-presupuesto-ejercer">$0</span>
+    </div>
+</div>
+                    <h2>Leyendas Indicativas</h2>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-icon icon-1"></div>
+                            <span class="legend-text">Adeudo</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-icon icon-2"></div>
+                            <span class="legend-text">Pendiente</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-icon icon-3"></div>
+                            <span class="legend-text">Sin Adeudo</span>
+                        </div>
+                        <!-- Agrega más leyendas según sea necesario -->
+                    </div>
+                    
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <nav id="sidebar" class="sidebar">
+                <button class="close-btn" style="border: none; background: none;">&times;</button>
+                <div class="dropdown">
+                    <div class="profile-section">
+                        <img src="images\png-transparent-avatar-female-others-purple-face-black-hair.png" alt="Foto de perfil" class="profile-pic">
+                        <h2 class="username">Nombre del Usuario</h2>
+                    </div>
+                    <button class="dropbtn">Menu</button>
+                    <div class="dropdown-content">
+                        <button class="tab-button" data-tab="personal"><i class="fa fa-user"></i> Datos Personales</button>
+                        <button class="tab-button" data-tab="externo"><i class="fa fa-hand-holding-usd"></i> Ayudas Externas con Presupuesto</button>
+                       
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <button id="open-sidebar" class="open-btn"><i class="fa fa-bars"></i> Menu</button>
+                
+                <!-- Contenido Principal - Mensaje de Bienvenida -->
+                <div id="bienvenida">
+                    <h2>Bienvenido al Cuadro de Mando Hospitalario</h2>
+                    <p>Utilice el menú para navegar por las diferentes secciones.</p>
+                </div>
+                
+                <!-- Contenidos de las pestañas -->
+                <div class="tab-content" id="personal" style="display: none;">
+                    <h2>Datos Personales</h2>
+                    
+                    <form id="form-datos-personales">
+                        <div>
+                            <label for="numero-carnet">Número de Carnet:</label>
+                            <input type="text" id="numero-carnet" name="numero-carnet" pattern="\d+" title="Solo números" required>
+                        </div>
+                        <div>
+                            <label for="nombre">Nombre(s):</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div>
+                            <label for="apellido-paterno">Apellido Paterno:</label>
+                            <input type="text" id="apellido-paterno" name="apellido-paterno" required>
+                        </div>
+                        <div>
+                            <label for="apellido-materno">Apellido Materno:</label>
+                            <input type="text" id="apellido-materno" name="apellido-materno" required>
+                        </div>
+                        <div>
+                            <label for="edad">Edad:</label>
+                            <input type="number" id="edad" name="edad" pattern="\d+" title="Solo números" required>
+                        </div>
+                        <div>
+                            <label for="sexo">Sexo:</label>
+                            <select id="sexo" name="sexo">
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="entidad-federativa">Entidad Federativa:</label>
+                            <select id="entidad-federativa" name="entidad-federativa">
+                                <option value="hidalgo" selected>Hidalgo</option>
+                                <!-- Otras opciones -->
+                            </select>
+                        </div>
+                                                <!-- Desplegable para seleccionar el tipo de apoyo -->
+                        <div class="form-group">
+                            <label for="tipo-apoyo">Tipo de Apoyo</label>
+                            <select id="tipo-apoyo" name="tipo-apoyo" class="form-control">
+                                <option value="servicio-medico">Servicio Médico</option>
+                                <option value="medicamentos-ortesis-protesis">Medicamentos Ortesis y Prótesis</option>
+                                <option value="diversos-especie">Diversos Especie</option>
+                                <option value="terapia-asistida">Terapia Asistida con Animales</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <!-- Campo de texto que se habilita cuando se selecciona "Otros" -->
+                        <div class="form-group" id="especificar-otros-container" style="display: none;">
+                            <label for="especificar-otros">Especifique</label>
+                            <input type="text" id="especificar-otros" name="especificar-otros" class="form-control">
+                        </div>
+
+                        <!-- Campo para el monto de apoyo económico -->
+                        <div class="form-group">
+                            <label for="monto-apoyo">Monto de Apoyo Económico</label>
+                            <input type="number" id="monto-apoyo" name="monto-apoyo" class="form-control" step="0.01" min="0">
+                        </div>
+
+                        <div>
+                            <label for="fecha-solicitud">Fecha de Solicitud de Apoyo:</label>
+                            <input type="date" id="fecha-solicitud" name="fecha-solicitud" required>
+                        </div>
+                        <div>
+                            <label for="fecha-resolucion">Fecha de Resolución de Apoyo:</label>
+                            <input type="date" id="fecha-resolucion" name="fecha-resolucion" required>
+                        </div>
+                        <button type="submit">Enviar</button>
+                    </form> 
+                    
+                    <!-- Mensaje de éxito -->
+                    <div id="mensaje-exito" style="display: none; color: green; font-weight: bold; margin-top: 20px;">
+                        Datos agregados exitosamente a la tabla.
+                    </div>
+                    
+                    <!-- Selección del criterio de búsqueda -->
+                    <div id="filtro-criterio">
+                        <label for="criterio-busqueda">Buscar por:</label>
+                        <select id="criterio-busqueda">
+                            <option value="mes">Mes</option>
+                            <option value="anio">Año</option>
+                            <option value="carnet">Número de Carnet</option>
+                            <option value="nombre">Nombre</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos de búsqueda -->
+                    <div id="buscador">
+                        <div id="buscar-mes-container">
+                            <label for="buscar-mes">Mes:</label>
+                            <input type="text" id="buscar-mes" placeholder="Mes (e.g., Enero)">
+                        </div>
+                        <div id="buscar-anio-container">
+                            <label for="buscar-anio">Año:</label>
+                            <input type="text" id="buscar-anio" placeholder="Año (e.g., 2024)">
+                        </div>
+                        <div id="buscar-carnet-container">
+                            <label for="buscar-carnet">Número de Carnet:</label>
+                            <input type="text" id="buscar-carnet" placeholder="Número de Carnet">
+                        </div>
+                        <div id="buscar-nombre-container">
+                            <label for="buscar-nombre">Nombre:</label>
+                            <input type="text" id="buscar-nombre" placeholder="Nombre">
+                        </div>
+                    <button id="buscar-datos">Buscar</button>
+                        <button id="limpiar-busqueda">Limpiar Búsqueda</button>
+                        <button type="button" id="btn-generar-csv">Generar CSV</button>
+                    </div>
+
+                    <!-- Sección para generar reportes -->
+<div id="generar-reporte">
+    <h2>Generar Reporte</h2>
+    <form id="form-reporte">
+        <div>
+            <label for="tipo-reporte">Tipo de Reporte:</label>
+            <select id="tipo-reporte" name="tipo-reporte">
+                <option value="individual">Individual</option>
+                <option value="semanal">Semanal</option>
+                <option value="quincenal">Quincenal</option>
+                <option value="mensual">Mensual</option>
+                <option value="bimestral">Bimestral</option>
+                <option value="anual">Anual</option>
+            </select>
+        </div>
+        <div>
+            <label for="fecha-inicio">Fecha de Inicio:</label>
+            <input type="date" id="fecha-inicio" name="fecha-inicio">
+        </div>
+        <div>
+            <label for="fecha-fin">Fecha de Fin:</label>
+            <input type="date" id="fecha-fin" name="fecha-fin">
+        </div>
+        <div>
+            <label for="numero-carnet-reporte">Número de Carnet (opcional):</label>
+            <input type="text" id="numero-carnet-reporte" name="numero-carnet-reporte">
+        </div>
+        <button type="button" id="btn-generar-reporte">Generar Reporte</button>
+    </form>
+</div>
+                    <!-- Tabla -->
+                    <h2>Datos Ingresados</h2>
+                    <table id="datos-personales-tabla">
+                        <thead>
+                            <tr>
+                                <th>Número de Carnet</th>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                                <th>Edad</th>
+                                <th>Sexo</th>
+                                <th>Entidad Federativa</th>
+                                <th>Tipo de Apoyo</th>
+                                <th>Monto de Apoyo Economico</th>
+                                <th>Especificacion</th>
+                                <th>Fecha de Solicitud</th>
+                                <th>Fecha de Resolución</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Las filas de datos se añadirán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                    
+                </div>
+                
+                <div class="tab-content" id="externo" style="display: none;">
+                    <h2>Ayudas Externas con Presupuesto</h2>
+                    <iframe src="ayudas_externas.html" frameborder="0" style="width: 100%; height: 500px;"></iframe>
+                </div>
+                
+                <!-- Agrega más tab-content para otras secciones según sea necesario -->
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
