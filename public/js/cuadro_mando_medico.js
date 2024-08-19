@@ -137,141 +137,122 @@ $(document).ready(function() {
 // *************************RECETA MEDICA************************************************
 //Obtener valores de medicos
 
-// Obtener valores de médicos
-$.ajax({
-    url: '/receta-container',
-    method: 'POST',
-    success: function(doctores) {
-        doctores.forEach(function(doctor) {
-            const NombreCompleto = `${doctor.Nombre_Medico} ${doctor.Apellido_Paterno_Medico} ${doctor.Apellido_Materno_Medico}`;
-            $("#r_menu_doctor").append(new Option(NombreCompleto, doctor.Cedula_Profesional_Medico));
-        });
-    },
-    error: function(error) {
-        console.error('Error al obtener los doctores:', error);
-    }
-});
-
-// Actualizar campos al seleccionar un médico
-$('#r_menu_doctor').on('change', function() {
-    var selectedCedula = $(this).val();
+    // Obtener la lista de médicos desde el servidor
     $.ajax({
-        url: '/receta-container',
-        method: 'POST',
-        data: { cedula: selectedCedula },
-        success: function(selectedDoctor) {
-            if (selectedDoctor.length > 0) {
-                var doctor = selectedDoctor[0];
-                $('#r_nombre_medico').val(`${doctor.Nombre_Medico} ${doctor.Apellido_Paterno_Medico} ${doctor.Apellido_Materno_Medico}`);
-                $('#r_cedula_medico').val(doctor.Cedula_Profesional_Medico);
-                $('#r_especialidad_medico').val(doctor.Nombre_Especialidad_Medica);
-                $('#r_egresado_medico').val(doctor.Escuela_Egresado_Medico);
-            } else {
-                $('#r_nombre_medico').val('');
-                $('#r_cedula_medico').val('');
-                $('#r_especialidad_medico').val('');
-                $('#r_egresado_medico').val('');
-            }
+        url: 'receta-container',
+        method: 'GET',
+        success: function(data) {
+            var doctores = data;
+
+            doctores.forEach(function(doctor) {
+                $('#r_menu_doctor').append(new Option(doctor.nombre, doctor.nombre));
+            });
+
+            $('#r_menu_doctor').on('change', function() {
+                var selectedDoctor = doctores.find(doc => doc.nombre === this.value);
+                if (selectedDoctor) {
+                    $('#r_nombre_medico').val(selectedDoctor.nombre);
+                    $('#r_cedula_medico').val(selectedDoctor.cedula);
+                    $('#r_especialidad_medico').val(selectedDoctor.especialidad);
+                    $('#r_egresado_medico').val(selectedDoctor.egresado);
+                } else {
+                    $('#r_nombre_medico').val('');
+                    $('#r_cedula_medico').val('');
+                    $('#r_especialidad_medico').val('');
+                    $('#r_egresado_medico').val('');
+                }
+            });
         },
         error: function(error) {
-            console.error('Error al obtener los datos del médico:', error);
+            console.error('Error al obtener la lista de médicos:', error);
         }
     });
-});
 
-
-
-    // Inicializar el calendario
-    var calendar_r = document.getElementById('r_calendar');
-    var calendar_r = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        editable: true,
-        /*events: getSavedCitas()*/ // Cargar eventos guardados en el calendario
-    });
-    calendar_r.render();
-$('#r_boton_fecha').on('click', function() {
-    $('calendar_r').toggle();
-});
-
-/*$('#r_calendar').datepicker({
-    dateFormat: 'dd   /   mm   / yy',
-    onSelect: function(dateText) {
-        $('#r_fecha').text(dateText);
-        $('#r_calendar').hide();
-    }
-});*/
-
-
-
-
-
-
-$('#r_boton_pdf').on('click', function() {
-    var r_nombre_paciente = $('#r_nombre_paciente').val();
-    var r_expediente_paciente = $('#r_numero_expediente_paciente').val();
-    var r_edad_paciente = $('#r_edad_paciente').val();
-    var r_peso_paciente = $('#r_peso_paciente').val();
-    var r_diag_paciente = $('#r_diag_paciente').val();
-    var r_fec_nac_paciente = $('#r_nacimiento_paciente').val();
-    var r_domicilio_paciente = $('#r_domicilio_paciente').val();
-    var r_fecha_seleccionada = $('#r_fecha').text();
-    var r_nombre_medico = $('#r_nombre_medico').val();
-    var r_cedula = $('#r_cedula_medico').val();
-    var r_especialidad = $('#r_especialidad_medico').val();
-    var r_egresado = $('#r_egresado_medico').val();
-    var r_especificaciones = $('#r_especificaciones').val();
-
-    if (!r_nombre_paciente || !r_expediente_paciente) {
-        alert('Por favor, ingrese el nombre y el expediente del paciente.');
-        return;
-    }
-
-    var qrText = `${r_fecha_seleccionada}\n${r_nombre_paciente} ${r_expediente_paciente}\n${r_edad_paciente} ${r_peso_paciente} ${r_diag_paciente}\n${r_fec_nac_paciente} ${r_domicilio_paciente}\n${r_especificaciones}\n${r_nombre_medico}\n${r_cedula}\n${r_especialidad}     ${r_egresado}`;
-
-    var qrContainer = document.createElement('div');
-    var qrcode = new QRCode(qrContainer, {
-        text: qrText,
-        width: 100,
-        height: 100,
+    // Manejador para el calendario
+    $('#r_boton_fecha').on('click', function() {
+        $('#r_calendar').toggle();
     });
 
-    setTimeout(function() {
-        var qrImg = qrContainer.querySelector('img').src;
+    $('#r_calendar').datepicker({
+        dateFormat: 'dd / mm / yy',
+        onSelect: function(dateText) {
+            $('#r_fecha').text(dateText);
+            $('#r_calendar').hide();
+        }
+    });
 
-        var { jsPDF } = window.jspdf;
-        var doc = new jsPDF('p', 'mm', 'a4');
-        var img = new Image();
-        img.src = 'public/images/receta_comprimida.png';
+    // Manejador para generar el PDF
+    $('#r_boton_pdf').on('click', function() {
+        var nombre_paciente = $('#nombre_paciente').val();
+        var expediente_paciente = $('#expediente_paciente').val();
+        var edad_paciente = $('#edad_paciente').val();
+        var peso_paciente = $('#peso_paciente').val();
+        var diag_paciente = $('#diag_paciente').val();
+        var fec_nac_paciente = $('#fec_nac_paciente').val();
+        var domicilio_paciente = $('#domicilio_paciente').val();
+        var fecha_seleccionada = $('#fecha').text();
+        var nombre_medico = $('#nombre_medico').val();
+        var cedula = $('#cedula_medico').val();
+        var especialidad = $('#especialidad_medico').val();
+        var egresado = $('#egresado_medico').val();
+        var especificaciones = $('#especificaciones').val();
 
-        img.onload = function() {
-            var imgWidth = 210; 
-            var imgHeight = (imgWidth * 600) / 1000; 
+        if (!nombre_paciente || !expediente_paciente) {
+            alert('Por favor, ingrese el nombre y el expediente del paciente.');
+            return;
+        }
 
-            doc.addImage(img, 'PNG', 0, 0, imgWidth, imgHeight);
-            doc.setFontSize(10);
-            doc.text(fecha_seleccionada, 168, 18);
-            doc.text(nombre_paciente, 45, 30); 
-            doc.text(expediente_paciente, 150, 31); 
-            doc.text(edad_paciente, 24, 36); 
-            doc.text(peso_paciente, 80, 37); 
-            doc.text(diag_paciente, 125, 37); 
-            doc.text(fec_nac_paciente, 45, 43); 
-            doc.text(domicilio_paciente, 98, 44); 
-            doc.text(especificaciones, 10, 60); 
-            doc.text(nombre_medico, 33, 105); 
-            doc.text(cedula, 33, 108); 
-            doc.text(especialidad, 33, 111); 
-            doc.text(egresado, 33, 114); 
+        var qrText = `${fecha_seleccionada}\n${nombre_paciente} ${expediente_paciente}\n${edad_paciente} ${peso_paciente} ${diag_paciente}\n${fec_nac_paciente} ${domicilio_paciente}\n${especificaciones}\n${nombre_medico}\n${cedula}\n${especialidad} ${egresado}`;
 
-            var qrX = (imgWidth - 20) / 2; 
-            var qrY = imgHeight / 2 + 135; 
-            doc.addImage(qrImg, 'PNG', qrX, qrY, 70, 70); 
+        var qrContainer = document.createElement('div');
+        var qrcode = new QRCode(qrContainer, {
+            text: qrText,
+            width: 100,
+            height: 100,
+            correctLevel: QRCode.CorrectLevel.H,
+            utf8: true // Añade soporte para UTF-8
+        });
 
-            var nombreArchivo = `${nombre_paciente}_${expediente_paciente}.pdf`;
-            doc.save(nombreArchivo);
-        };
-    }, 1000); 
-});
+        setTimeout(function() {
+            var qrImg = qrContainer.querySelector('img').src;
+
+            var { jsPDF } = window.jspdf;
+            var doc = new jsPDF('p', 'mm', 'a4');
+            var img = new Image();
+            img.src = 'Receta.png';
+
+            img.onload = function() {
+                var imgWidth = 210;
+                var imgHeight = (imgWidth * 600) / 1000;
+
+                doc.addImage(img, 'PNG', 0, 0, imgWidth, imgHeight);
+                doc.setFontSize(10);
+                doc.text(fecha_seleccionada, 168, 18);
+                doc.text(nombre_paciente, 45, 30);
+                doc.text(expediente_paciente, 150, 31);
+                doc.text(edad_paciente, 24, 36);
+                doc.text(peso_paciente, 80, 37);
+                doc.text(diag_paciente, 125, 37);
+                doc.text(fec_nac_paciente, 45, 43);
+                doc.text(domicilio_paciente, 98, 44);
+                doc.text(especificaciones, 10, 60);
+                doc.text(nombre_medico, 33, 105);
+                doc.text(cedula, 33, 108);
+                doc.text(especialidad, 33, 111);
+                doc.text(egresado, 33, 114);
+
+                var qrX = (imgWidth - 20) / 2;
+                var qrY = imgHeight / 2 + 135;
+                doc.addImage(qrImg, 'PNG', qrX, qrY, 70, 70);
+
+                var nombreArchivo = `${nombre_paciente}_${expediente_paciente}.pdf`;
+                doc.save(nombreArchivo);
+            };
+        }, 1000);
+    });
+
+
+    //Para finalizar sesion
 
 document.getElementById('logout-button').addEventListener('click', function() {
     fetch('/logout', { method: 'POST' })

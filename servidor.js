@@ -13,8 +13,10 @@ app.use(cors()); // Habilita CORS para todas las solicitudes
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  database: 'CRIT',
-  password: 'manu11',
+  //database: 'CRIT',
+  database: 'Proyecto_Teleton3',
+  //password: 'manu11',
+  password: 'Mendoza1239',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0

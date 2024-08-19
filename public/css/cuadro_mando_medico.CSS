@@ -249,6 +249,7 @@ header {
 #r_especialidad_medico { top: 870px; left: 600px; width: 150px; height: 16px; }
 #r_egresado_medico { top: 884px; left: 600px; width: 150px; height: 16px; }
 #r_especificaciones { top: 573px; left: 500px; width: 900px; height: 250px; }/*575*/
+
 #r_fecha {
     position: absolute;
     top: 70px;

@@ -3,13 +3,12 @@ const express = require("express");
 const path = require("path");
 const directorRoutes = require('./controladores/login_director'); 
 const medicoRoutes = require('./controladores/login_medico');
+const trabajosRoutes = require('./controladores/login_trabajosocial');
 const recetaRoutes=require('./controladores/receta_medico');
 const registrousuario=require('./controladores/registro');
 const validaciones_sistema_director=require('./controladores/director_validaciones_sistema');
 const registro_medicos_director=require('./controladores/director_registro_medicos');
 const registro_pacientes_director=require('./controladores/director_registro_Pacientes');
-
-
 
 
 
@@ -29,6 +28,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Aquí es donde utilizas las rutas
 app.use('/', directorRoutes);
 app.use('/', medicoRoutes);
+app.use('/', trabajosRoutes);
 app.use('/', recetaRoutes);
 app.use('/', registrousuario);
 app.use('/', validaciones_sistema_director);
@@ -46,6 +46,10 @@ app.get("/registro_nuevo",function(req,res){
 
 app.get("/login_medico",function(req,res){
     res.render("/cuadro_mando_medico");
+})
+
+app.get("/login_trabajosocial",function(req,res){
+    res.render("/cuadro_mando_trabajosocial");
 })
 
 
