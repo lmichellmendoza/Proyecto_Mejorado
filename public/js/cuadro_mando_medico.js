@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resolve({
                     id: userID,
                     name: 'Juan Pérez',
-                    profilePicture: 'public/images/Profile-Avatar-PNG.png'
+                    profilePicture: 'images/Profile-Avatar-PNG.png'
                 });
             }, 1000);
         });
@@ -134,6 +134,8 @@ $(document).ready(function() {
     }
 });
 
+
+
 // *************************RECETA MEDICA************************************************
 //Obtener valores de medicos
 
@@ -252,16 +254,33 @@ $(document).ready(function() {
     });
 
 
-    //Para finalizar sesion
+//Obtener los valores de los pacientes
 
-document.getElementById('logout-button').addEventListener('click', function() {
-    fetch('/logout', { method: 'POST' })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = '/login_medico'; // Redirigir al usuario a la página de inicio de sesión.
-            } else {
-                alert('Error al cerrar sesión. Inténtalo de nuevo.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-});
+/*document.getElementById('traer_pacientes').addEventListener('click', function(event){
+    event.preventDefault();
+    const numeroExpediente= document.getElementById('r_numero_expediente_paciente').value;
+
+    fetch('/buscar_paciente',{ //Asi se llama en mi back
+        method:'POST',
+        headers:{
+            'Content-Type':'applocation/json'
+
+        },
+        body:JSON.stringify({numeroExpediente})
+    })
+    .then(response=>response.json())
+    .then(data=>{
+        if (data){
+            document.getElementById('r_nombre_paciente').value = data.nombre_completo;
+            document.getElementById('r_nacimiento_paciente').value = data.fecha_nacimiento;
+        }
+        else
+        {
+            alert('Paciente no encontrado');
+        }
+    })
+    .catch(error=>{
+        console.error('Error:', error);
+        alert('Error al buscar paciente');
+    });
+});*/
