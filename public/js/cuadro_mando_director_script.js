@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tr.querySelector('.btn-modificar_paciente').addEventListener('click', () => { //Modificar Paciente
                     const ne = tr.querySelector('.btn-modificar_paciente').getAttribute('data-id');
                     if (ne) {
-                        fetch(`/boton_modificar_paciente/${id}`, {
+                        fetch(`/boton_modificar_paciente/${ne}`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' }
                         })
@@ -452,51 +452,77 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/registro_pacientes_director');
             const data = await response.json();
-
+    
             const tpbody = document.querySelector('#rp_tabla tbody');
             tpbody.innerHTML = ''; // Limpiar el contenido actual
-
+    
             data.forEach(paciente => {
                 const fechaNacimiento = new Date(paciente.fecha_nacimiento_paciente).toLocaleDateString();
-
+    
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${paciente.Numero_Expediente}</td>
-                    <td>${paciente.Nombre_Pacientes}</td>
-                    <td>${paciente.ApellidoPaterno_Pacientes}</td>
-                    <td>${paciente.ApellidoMaterno_Pacientes}</td>
-                    <td>${fechaNacimiento}</td>
+                    <td contenteditable="false">${paciente.Numero_Expediente}</td>
+                    <td contenteditable="false">${paciente.Nombre_Pacientes}</td>
+                    <td contenteditable="false">${paciente.ApellidoPaterno_Pacientes}</td>
+                    <td contenteditable="false">${paciente.ApellidoMaterno_Pacientes}</td>
+                    <td contenteditable="false">${fechaNacimiento}</td>
+                    <td>
+                        <button class="btn-modificar_paciente" data-id="${paciente.Numero_Expediente}">Modificar</button>
+                        <button class="btn-eliminar_paciente" data-id="${paciente.Numero_Expediente}">Eliminar</button>
                     </td>
-                    <button class="btn-modificar_paciente" data-id="${paciente.Numero_Expediente}">Modificar</button>
-                    <button class="btn-eliminar_paciente" data-id="${paciente.Numero_Expediente}">Eliminar</button>
-                    </td>
-
                 `;
                 tpbody.appendChild(tr);
-
-                tr.querySelector('.btn-modificar_paciente').addEventListener('click', () => { //Modificar Paciente
-                    const ne = tr.querySelector('.btn-modificar_paciente').getAttribute('data-id');
-                    if (ne) {
-                        fetch(`/boton_modificar_paciente/${en}`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' }
+    
+                // Manejo de evento para "Modificar"
+                const btnModificar = tr.querySelector('.btn-modificar_paciente');
+                btnModificar.addEventListener('click', () => { 
+                    console.log('Botón Modificar clicado');
+    
+                    const numeroExpediente = btnModificar.getAttribute('data-id');
+                    const celdas = tr.querySelectorAll('td:not(:last-child)');
+    
+                    if (btnModificar.textContent === 'Modificar') {
+                        // Habilitar la edición
+                        celdas.forEach(celda => {
+                            celda.setAttribute('contenteditable', 'true');
+                            celda.style.backgroundColor = '#f0f0f0'; // Indicar que es editable
+                        });
+                        btnModificar.textContent = 'Guardar';
+                    } else {
+                        // Deshabilitar la edición y guardar cambios
+                        const datosActualizados = {
+                            Numero_Expediente: celdas[0].textContent,
+                            Nombre_Pacientes: celdas[1].textContent,
+                            ApellidoPaterno_Pacientes: celdas[2].textContent,
+                            ApellidoMaterno_Pacientes: celdas[3].textContent,
+                            fecha_nacimiento_paciente: new Date(celdas[4].textContent).toISOString()
+                        };
+    
+                        fetch(`/boton_modificar_paciente/${numeroExpediente}`, {
+                            method: 'PUT', // Cambié a PUT ya que es una actualización
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(datosActualizados)
                         })
                         .then(response => response.json())
                         .then(data => {
                             alert(data.message);
-                            tr.remove(); // Elimina la fila de la tabla
+                            celdas.forEach(celda => {
+                                celda.setAttribute('contenteditable', 'false');
+                                celda.style.backgroundColor = ''; // Restaurar color original
+                            });
+                            btnModificar.textContent = 'Modificar';
                         })
                         .catch(error => console.error('Error:', error));
-                    } else {
-                        alert('Número de expediente no válido');
                     }
-                });  
-
-                tr.querySelector('.btn-eliminar_paciente').addEventListener('click', () => {
-                    const ne = tr.querySelector('.btn-eliminar_paciente').getAttribute('data-id');
-                    if (ne) {
-                        fetch(`/boton_eliminar_paciente/${ne}`, { // Cambiado de en a ne
-                            method: 'POST',
+                });
+    
+                // Manejo de evento para "Eliminar"
+                const btnEliminar = tr.querySelector('.btn-eliminar_paciente');
+                btnEliminar.addEventListener('click', () => {
+                    const numeroExpediente = btnEliminar.getAttribute('data-id');
+                    if (numeroExpediente) {
+                        fetch(`/boton_eliminar_paciente/${numeroExpediente}`, {
+                            method: 'DELETE', // Cambié a DELETE ya que se está eliminando un recurso
                             headers: { 'Content-Type': 'application/json' }
                         })
                         .then(response => response.json())
@@ -509,16 +535,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert('Número de expediente no válido');
                     }
                 });
-                
-                
             });
         } catch (error) {
             console.error('Error al obtener los datos:', error);
         }
     }
-});
+    
+    // Llamar a la función para actualizar la tabla al cargar la página
+    document.addEventListener('DOMContentLoaded', actualizarTablaPacientes);
+    
 
 
 
 
 //:::::::::::::::::::::::::::::::
+})

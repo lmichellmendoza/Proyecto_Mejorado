@@ -36,6 +36,22 @@ router.get("/receta-container", async function(req, res) { // Usamos async aquí
     }
 });
 
+router.post('/buscarPaciente', async (req, res) => {
+    const { numero_expediente } = req.body;
+
+    try {
+    const [rows] = await pool.query('select Nombre_Pacientes, ApellidoPaterno_Pacientes,ApellidoMaterno_Pacientes,fecha_nacimiento_paciente FROM pacientes WHERE Numero_Expediente=?', [numero_expediente]);
+
+    if (rows.length > 0) {
+        res.json(rows[0]);
+    } else {
+        res.status(404).send('Paciente no encontrado');
+    }
+    } catch (err) {
+    console.error('Error en la consulta:', err);
+    res.status(500).send('Error en la consulta');
+    }
+});  
 
 
 

@@ -73,7 +73,19 @@ router.post('/boton_eliminar_paciente/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+// Para modificar los datos de un paciente existente
+router.put('/modificar_paciente/:numeroExpediente', (req, res) => {
+    const numeroExpediente = req.params.numeroExpediente;
+    const datosActualizados = req.body;
+
+    // Suponiendo que usas MySQL2/PROMISE para las consultas
+    const sql = `UPDATE pacientes SET Nombre_Pacientes = ?, ApellidoPaterno_Pacientes = ?, ApellidoMaterno_Pacientes = ?, fecha_nacimiento_paciente = ? WHERE Numero_Expediente = ?`;
+    
+    pool.query(sql, [datosActualizados.Nombre_Pacientes, datosActualizados.ApellidoPaterno_Pacientes, datosActualizados.ApellidoMaterno_Pacientes, datosActualizados.fecha_nacimiento_paciente, numeroExpediente])
+        .then(() => res.json({ message: 'Paciente modificado exitosamente' }))
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+
 
 
 module.exports = router;

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resolve({
                     id: userID,
                     name: 'Juan Pérez',
-                    profilePicture: 'images/Profile-Avatar-PNG.png'
+                    profilePicture: 'public/images/Profile-Avatar-PNG.png'
                 });
             }, 1000);
         });
@@ -134,8 +134,6 @@ $(document).ready(function() {
     }
 });
 
-
-
 // *************************RECETA MEDICA************************************************
 //Obtener valores de medicos
 
@@ -256,31 +254,32 @@ $(document).ready(function() {
 
 //Obtener los valores de los pacientes
 
-/*document.getElementById('traer_pacientes').addEventListener('click', function(event){
-    event.preventDefault();
-    const numeroExpediente= document.getElementById('r_numero_expediente_paciente').value;
-
-    fetch('/buscar_paciente',{ //Asi se llama en mi back
-        method:'POST',
-        headers:{
-            'Content-Type':'applocation/json'
-
+document.getElementById('traer_pacientes').addEventListener('click', async () => {
+    const numeroExpediente = document.getElementById('r_numero_expediente_paciente').value;
+  
+    try {
+      const response = await fetch('http://localhost:3000/buscarPaciente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        body:JSON.stringify({numeroExpediente})
-    })
-    .then(response=>response.json())
-    .then(data=>{
-        if (data){
-            document.getElementById('r_nombre_paciente').value = data.nombre_completo;
-            document.getElementById('r_nacimiento_paciente').value = data.fecha_nacimiento;
-        }
-        else
-        {
-            alert('Paciente no encontrado');
-        }
-    })
-    .catch(error=>{
-        console.error('Error:', error);
-        alert('Error al buscar paciente');
-    });
-});*/
+        body: JSON.stringify({ numero_expediente: numeroExpediente })
+      });
+  
+      if (!response.ok) {
+        throw new Error('Paciente no encontrado');
+      }
+  
+      const data = await response.json();
+  
+      // Asigna los datos a los campos del formulario
+      document.getElementById('r_nombre_paciente').value = data.nombre;
+      document.getElementById('r_nacimiento_paciente').value = data.fecha_nacimiento;
+      // Puedes asignar más campos si tienes más datos
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Paciente no encontrado');
+    }
+  });
+  
+
